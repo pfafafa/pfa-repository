@@ -41,6 +41,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.util.Size;
@@ -58,6 +59,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
+
+import static android.hardware.camera2.CameraDevice.TEMPLATE_PREVIEW;
+
 
 public class Camera2BasicFragment extends Fragment
         implements ActivityCompat.OnRequestPermissionsResultCallback {
@@ -161,14 +165,37 @@ public class Camera2BasicFragment extends Fragment
                 activity.finish();
             }
         }
-
     };
-
 
     /**
      * {@link CaptureRequest.Builder} for the camera preview
      */
-    private CaptureRequest.Builder mPreviewRequestBuilder;
+    public CaptureRequest.Builder mPreviewRequestBuilder;
+
+    /**
+     * CameraCaptureSession.StateCallback used createCaptureSession
+     */
+    private CameraCaptureSession.StateCallback mSessionStateCallback = new CameraCaptureSession.StateCallback() {
+
+        @Override
+        public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
+            if (null == mCameraDevice) {
+                return;
+            }
+            mCaptureSession = cameraCaptureSession;
+            try {
+                mCaptureSession.setRepeatingRequest(mPreviewRequestBuilder.build(), null, null);
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        public void onConfigureFailed(
+                @NonNull CameraCaptureSession cameraCaptureSession) {
+            showToast("Failed");
+        }
+    };
 
     /**
      * A {@link Semaphore} to prevent the app from exiting before closing the camera.
@@ -241,19 +268,77 @@ public class Camera2BasicFragment extends Fragment
         }
     }
 
+
+
+
+
     @NonNull
-    public static Camera2BasicFragment newInstance() {
-        return new Camera2BasicFragment();
+    public static Camera2BasicFragment setUp(FragmentActivity frag, int containerViewId) {
+        Camera2BasicFragment camera = new Camera2BasicFragment();
+
+        frag.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(containerViewId, camera)
+                .commit();
+
+        return camera;
     }
 
+    public CaptureRequest.Builder getRequestBuilder() {
+
+        CaptureRequest.Builder res = null;
+        try {
+            if (mCameraDevice != null) {
+                // We set up a CaptureRequest.Builder with the output Surface.
+                res = mCameraDevice.createCaptureRequest(TEMPLATE_PREVIEW);
+                res.addTarget(new Surface(this.mTextureView.getSurfaceTexture()));
+            }
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+        return res;
+    }
+
+    public void setRequest(CaptureRequest.Builder previewRequestBuilder) {
+        try {
+
+            mPreviewRequestBuilder = previewRequestBuilder;
+
+            if (mTextureView != null && mCameraDevice != null) {
+                Surface surface = new Surface(mTextureView.getSurfaceTexture());
+
+                mCameraDevice.createCaptureSession(Collections.singletonList(surface),
+                        mSessionStateCallback,
+                        null);
+            }
+
+        } catch (CameraAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void close(FragmentActivity frag) {
+
+        closeCamera();
+
+        frag.getSupportFragmentManager()
+                .beginTransaction()
+                .remove(this)
+                .commit();
+    }
+
+
+
+
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_camera2_basic, container, false);
     }
 
     @Override
-    public void onViewCreated(final View view, Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, Bundle savedInstanceState) {
         mTextureView = (AutoFitTextureView) view.findViewById(R.id.texture);
     }
 
@@ -380,11 +465,13 @@ public class Camera2BasicFragment extends Fragment
      * Opens the camera specified by {@link Camera2BasicFragment#mCameraId}.
      */
     private void openCamera(int width, int height) {
+
         if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
             requestCameraPermission();
             return;
         }
+
         setUpCameraOutputs(width, height);
         configureTransform(width, height);
         Activity activity = getActivity();
@@ -437,44 +524,13 @@ public class Camera2BasicFragment extends Fragment
             Surface surface = new Surface(texture);
 
             // We set up a CaptureRequest.Builder with the output Surface.
-            mPreviewRequestBuilder = mCameraDevice.createCaptureRequest(CameraDevice.TEMPLATE_PREVIEW);
-            mPreviewRequestBuilder.addTarget(surface);
+            mPreviewRequestBuilder = mCameraDevice.createCaptureRequest(TEMPLATE_PREVIEW);
+            mPreviewRequestBuilder.addTarget(new Surface(this.mTextureView.getSurfaceTexture()));
 
             // Here, we create a CameraCaptureSession for camera preview.
-            mCameraDevice.createCaptureSession(Arrays.asList(surface),
-                    new CameraCaptureSession.StateCallback() {
-
-                        @Override
-                        public void onConfigured(@NonNull CameraCaptureSession cameraCaptureSession) {
-                            // The camera is already closed
-                            if (null == mCameraDevice) {
-                                return;
-                            }
-
-                            // When the session is ready, we start displaying the preview.
-                            mCaptureSession = cameraCaptureSession;
-                            try {
-                                // Auto focus should be continuous for camera preview.
-                                mPreviewRequestBuilder.set(CaptureRequest.CONTROL_AF_MODE,
-                                        CaptureRequest.CONTROL_AF_MODE_CONTINUOUS_PICTURE);
-
-                                // Finally, we start displaying the camera preview.
-                                mCaptureSession.setRepeatingRequest(
-                                        mPreviewRequestBuilder.build(),
-                                        null,
-                                        null);
-                            } catch (CameraAccessException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                        @Override
-                        public void onConfigureFailed(
-                                @NonNull CameraCaptureSession cameraCaptureSession) {
-                            showToast("Failed");
-                        }
-                    }, null
-            );
+            mCameraDevice.createCaptureSession(Collections.singletonList(surface),
+                    mSessionStateCallback,
+                    null);
         } catch (CameraAccessException e) {
             e.printStackTrace();
         }
@@ -512,6 +568,7 @@ public class Camera2BasicFragment extends Fragment
         }
         mTextureView.setTransform(matrix);
     }
+
 
 
 

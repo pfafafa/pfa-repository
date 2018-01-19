@@ -16,6 +16,8 @@
 
 package com.example.android.camera2basic;
 
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CaptureRequest;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -25,11 +27,11 @@ public class CameraActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+
         if (null == savedInstanceState) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.container, Camera2BasicFragment.newInstance())
-                    .commit();
+
+            Camera2BasicFragment camera = Camera2BasicFragment.setUp(this, R.id.container);
+
         }
     }
-
 }
