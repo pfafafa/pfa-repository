@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // set FrameProc when the camera is ready, (not ready yet after new and load)
+        camera.setFrameProc(Daltonism.testRed());
         camera.close();
     }
 

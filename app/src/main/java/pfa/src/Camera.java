@@ -8,12 +8,11 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
-import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
 /**
- * First shot of a basic Camera for processing each frame
+ * Basic Camera to process each frame
  *
  */
 
@@ -24,11 +23,20 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
     private BaseLoaderCallback loaderCallback;
     private Context appContext;
 
-    private static Mat useless;
-    private Mat rgb_8U_frame;
-    private Mat rgb_32F_frame;
+    private Mat rgba8uFrame;
+    private Mat rgba32fFrame;
 
-    private Mat colorTransform;
+    // Default frame processing do nothing
+    private static FrameProc frameProc = new FrameProc() {
+
+        public void start() {}
+
+        public Mat process(Mat rgbaFloatFrame) {
+            return rgbaFloatFrame;
+        }
+
+        public void release() {}
+    };
 
 
     Camera(Context context, CameraBridgeViewBase c) {
@@ -54,7 +62,7 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
         cvCamera.setCvCameraViewListener(this);
     }
 
-    public void load() {
+    void load() {
         if (OpenCVLoader.initDebug()) {
             Log.d(TAG, "OpenCV loaded successfully");
             loaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
@@ -64,57 +72,48 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
         }
     }
 
-    public void open() {
+    void open() {
         cvCamera.enableFpsMeter();
         cvCamera.enableView();
     }
 
-    public void close() {
+    void setFrameProc(FrameProc processer) {
+        processer.start();
+        FrameProc old = frameProc;
+        frameProc = processer;
+        old.release();
+    }
+
+    void close() {
         cvCamera.disableView();
     }
 
 
     @Override
     public void onCameraViewStarted(int width, int height) {
-        rgb_8U_frame  = new Mat(height, width, CvType.CV_8UC4);
-        rgb_32F_frame = new Mat(height, width, CvType.CV_32FC4);
-        useless       = new Mat();
-        // transform RGBA matrix
-        colorTransform = Mat.eye(4, 4, CvType.CV_32FC1);
+        rgba8uFrame  = new Mat(height, width, CvType.CV_8UC4);
+        rgba32fFrame = new Mat(height, width, CvType.CV_32FC4);
 
-        // Test channel color order : OK
-        //colorTransform.put(1, 1, 0.);
-        //colorTransform.put(2, 2, 0.);
-        //colorTransform.put(3, 3, 0.);
+        frameProc.start();
     }
 
     @Override
     public Mat onCameraFrame(CameraBridgeViewBase.CvCameraViewFrame inputFrame) {
-        rgb_8U_frame = inputFrame.rgba();
-        rgb_8U_frame.convertTo(rgb_32F_frame, CvType.CV_32FC4);
+        rgba8uFrame = inputFrame.rgba();
+        rgba8uFrame.convertTo(rgba32fFrame, CvType.CV_32FC4);
 
-        rgb_32F_frame = process(rgb_32F_frame);
+        rgba32fFrame = frameProc.process(rgba32fFrame);
 
-        rgb_32F_frame.convertTo(rgb_8U_frame, CvType.CV_8UC4);
-        return rgb_8U_frame;
-    }
-
-    private Mat process(Mat float32_frame) {
-        Mat colors = float32_frame.reshape(1, float32_frame.width() * float32_frame.height());
-
-        Core.gemm(colors, colorTransform, 1, useless, 0, colors);
-
-        float32_frame = colors.reshape(4, float32_frame.height());
-        return float32_frame;
+        rgba32fFrame.convertTo(rgba8uFrame, CvType.CV_8UC4);
+        return rgba8uFrame;
     }
 
     @Override
     public void onCameraViewStopped() {
-        rgb_8U_frame.release();
-        rgb_32F_frame.release();
-        useless.release();
+        rgba8uFrame.release();
+        rgba32fFrame.release();
 
-        colorTransform.release();
+        frameProc.release();
     }
 
 }
