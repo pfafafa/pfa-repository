@@ -1,8 +1,13 @@
 package pfa.src;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.view.View;
+import android.view.Window;
+
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
