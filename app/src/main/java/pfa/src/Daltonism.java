@@ -53,7 +53,7 @@ class Daltonism {
     }
 
     // Temporary matrices for calculus
-    final static private Mat useless  = new Mat(4, 4, CvType.CV_32FC1);
+    final static private Mat useless  = new Mat();
     static private Mat tmpRes = new Mat(4, 4, CvType.CV_32FC1);
 
 
@@ -61,7 +61,6 @@ class Daltonism {
     private Daltonism() {}
 
     static Mat rgbaTransform(Mat lmsTransform) {
-
         Mat res = new Mat(4, 4, CvType.CV_32FC1);
         Core.gemm(lmsTransform, RGBA2LMS,  1, useless, 0, tmpRes);
         Core.gemm(LMS2RGBA, tmpRes, 1, useless, 0, res);

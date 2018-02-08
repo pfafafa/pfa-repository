@@ -23,16 +23,16 @@ import org.opencv.core.Mat;
 
 public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
 
-    private static final String TAG = "Camera";
+    static private final String TAG = "Camera";
+    static private Context appContext;
     private CameraBridgeViewBase cvCamera;
     private BaseLoaderCallback loaderCallback;
-    private Context appContext;
 
     private Mat rgba8uFrame;
     private Mat rgba32fFrame;
 
     // Do nothing by default
-    private static FrameProc frameProc = FrameProcFactory.noProcess();
+    private FrameProc frameProc = FrameProcFactory.noProcess();
 
 
     Camera(Context context, CameraBridgeViewBase c) {
@@ -74,12 +74,12 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
     }
 
     /**
-     * @param processer can be given by FrameProcFactory
+     * @param proc can be given by FrameProcFactory
      */
-    void setFrameProc(FrameProc processer) {
-        processer.start();
+    void setFrameProc(FrameProc proc) {
+        proc.start();
         FrameProc old = frameProc;
-        frameProc = processer;
+        frameProc = proc;
         old.release();
     }
 
@@ -92,9 +92,6 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
     public void onCameraViewStarted(int width, int height) {
         rgba8uFrame  = new Mat(height, width, CvType.CV_8UC4);
         rgba32fFrame = new Mat(height, width, CvType.CV_32FC4);
-
-        frameProc.start();
-
     }
 
     @Override
@@ -112,8 +109,6 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
     public void onCameraViewStopped() {
         rgba8uFrame.release();
         rgba32fFrame.release();
-
-        frameProc.release();
     }
 
 }

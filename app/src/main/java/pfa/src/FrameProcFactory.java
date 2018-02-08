@@ -17,7 +17,7 @@ class FrameProcFactory {
     private FrameProcFactory() {}
 
     /**
-     * @return a empty FrameProc that do nothing
+     * @return an empty FrameProc that do nothing
      */
     static FrameProc noProcess() {
 
@@ -66,7 +66,7 @@ class FrameProcFactory {
 
             @Override
             public void release() {
-                // transform.release();  // while quitting the app
+                transform.release();
                 useless.release();
             }
         };
@@ -77,6 +77,13 @@ class FrameProcFactory {
      * @return a FrameProc that select one channel of the frame
      */
     static FrameProc oneColor(int channel) {
+
+        if (channel < 0) {
+            channel = 0;
+        } else if (2 < channel) {
+            channel = 2;
+        }
+
         Mat transform = Mat.zeros(4, 4, CvType.CV_32FC1);
         transform.put(channel, channel, 1.);
         return makeFrameProc(transform);

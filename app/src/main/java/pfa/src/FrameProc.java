@@ -6,7 +6,9 @@ import org.opencv.core.Mat;
 /**
  * Interface for process frame
  *
- * Implementation will use methods from OpenCv for complexity reasons.
+ * Methods start() and release() will be call once,
+ * start() before the first process() and release() after the last one
+ *
  * Do not make new object in process() method,
  * all objects had to be initialized in start() and destroyed in released()
  */
