@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
         }
-
         camera = new Camera(this, (CameraBridgeViewBase) findViewById(R.id.camera_view));
     }
 
@@ -37,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         // set FrameProc when the camera is ready, (not ready yet after new and load)
-        camera.setFrameProc(Daltonism.testRed());
+        camera.setFrameProc(Daltonism.deuteranope());
         camera.close();
     }
 

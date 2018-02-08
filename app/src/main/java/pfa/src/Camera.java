@@ -95,6 +95,7 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
         rgba32fFrame = new Mat(height, width, CvType.CV_32FC4);
 
         frameProc.start();
+
     }
 
     @Override
