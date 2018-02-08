@@ -1,8 +1,13 @@
 package pfa.src;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.view.View;
+import android.view.Window;
+
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -26,17 +31,8 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
     private Mat rgba8uFrame;
     private Mat rgba32fFrame;
 
-    // Default frame processing do nothing
-    private static FrameProc frameProc = new FrameProc() {
-
-        public void start() {}
-
-        public Mat process(Mat rgbaFloatFrame) {
-            return rgbaFloatFrame;
-        }
-
-        public void release() {}
-    };
+    // Do nothing by default
+    private static FrameProc frameProc = FrameProcFactory.noProcess();
 
 
     Camera(Context context, CameraBridgeViewBase c) {
@@ -77,6 +73,9 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
         cvCamera.enableView();
     }
 
+    /**
+     * @param processer can be given by FrameProcFactory
+     */
     void setFrameProc(FrameProc processer) {
         processer.start();
         FrameProc old = frameProc;
