@@ -1,8 +1,7 @@
 package pfa.src;
 
 import android.Manifest;
-import android.app.ActionBar;
-import android.app.Activity;
+
 import android.content.pm.PackageManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -11,9 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 import org.opencv.android.CameraBridgeViewBase;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
 
@@ -36,7 +36,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         camera = new Camera(this, (CameraBridgeViewBase) findViewById(R.id.camera_view));
+
+        final Button button = findViewById(R.id.buttonOnOff);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Code here executes on main thread after user presses button
+                // set FrameProc when the camera is ready, (not ready yet after new and load)
+                camera.setFrameProc(Daltonism.testRed());
+            }
+        });
+
+
     }
+
 
     @Override
     protected void onResume() {
@@ -47,8 +59,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // set FrameProc when the camera is ready, (not ready yet after new and load)
-        camera.setFrameProc(Daltonism.testRed());
         camera.close();
     }
 
