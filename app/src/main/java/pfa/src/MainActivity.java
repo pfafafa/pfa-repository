@@ -36,14 +36,36 @@ public class MainActivity extends AppCompatActivity {
         camera = new Camera(this, (CameraBridgeViewBase) findViewById(R.id.camera_view));
 
         // Button
-        final Button button = findViewById(R.id.buttonOnOff);
-        button.setOnClickListener(new View.OnClickListener() {
+        final Button button1 = findViewById(R.id.tritanopia);
+        button1.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Code here executes on main thread after user presses button
                 // set FrameProc when the camera is ready, (not ready yet after new and load)
-                camera.setFrameProc(FrameProcFactory.noDaltonism());
+                camera.setFrameProc(FrameProcFactory.tritanopia());
             }
         });
+
+        final Button button2 = findViewById(R.id.protanopia);
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                camera.setFrameProc(FrameProcFactory.protanopia());
+            }
+        });
+
+        final Button button3 = findViewById(R.id.deuteranopia);
+        button3.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                camera.setFrameProc(FrameProcFactory.deuteranopia());
+            }
+        });
+
+        final Button button4 = findViewById(R.id.noProcess);
+        button4.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                camera.setFrameProc(FrameProcFactory.noProcess());
+            }
+        });
+
+
     }
 
 

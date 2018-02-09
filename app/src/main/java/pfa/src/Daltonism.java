@@ -11,85 +11,36 @@ import org.opencv.core.Mat;
 
 class Daltonism {
 
-    // Matrices for changing color space
-    final static private Mat RGBA2LMS = new Mat(4, 4, CvType.CV_32FC1);
-    final static private Mat LMS2RGBA = new Mat(4, 4, CvType.CV_32FC1);
-    static {
-        RGBA2LMS.put(0, 0,
-                17.8824,   43.5161,  4.11935, 0.,
-                3.45565,   27.1554,  3.86714, 0.,
-                0.0299566, 0.184309, 1.46709, 0.,
-                0.,        0.,       0.,      1.);
-
-        LMS2RGBA.put(0, 0,
-                 8.09444479e-02, -1.30504409e-01,  1.16721066e-01, 0.,
-                -1.02485335e-02,  5.40193266e-02, -1.13614708e-01, 0.,
-                -3.65296938e-04, -4.12161469e-03,  6.93511405e-01, 0.,
-                 0.,              0.,              0.,             1.);
-//
-//        RGBA2LMS.put(0, 0,
-//                0.3811, 0.5783, 0.0402, 0,
-//                0.1967, 0.7244, 0.0782, 0,
-//                0.0241, 0.1288, 0.8444, 0,
-//                0,      0,      0,      1);
-//
-//        LMS2RGBA.put(0, 0,
-//                 4.4679, -3.5873,  0.1193, 0,
-//                -1.2186,  2.3809, -0.1624, 0,
-//                 0.0497, -0.2439,  1.2045, 0,
-//                 0,       0,       0,      1);
-
-    }
-
     // Matrices for simulating daltonism
-    final static Mat lmsDeuteranopia = new Mat(4, 4, CvType.CV_32FC1);
-    final static Mat lmsProtanopia   = new Mat(4, 4, CvType.CV_32FC1);
-    final static Mat lmsTritanopia   = new Mat(4, 4, CvType.CV_32FC1);
+    final static Mat deuteranopia = new Mat(4, 4, CvType.CV_32FC1);
+    final static Mat protanopia   = new Mat(4, 4, CvType.CV_32FC1);
+    final static Mat tritanopia   = new Mat(4, 4, CvType.CV_32FC1);
     static {
-        lmsDeuteranopia.put(0, 0,
-                1.,       0., 0.,      0.,
-                0.494207, 0., 1.24827, 0.,
-                0.,       0., 1.,      0.,
-                0.,       0., 0.,      1.);
+        deuteranopia.put(0, 0,
+                0.625, 0.375, 0,   0,
+                0.7,   0.3,   0,   0,
+                0,     0.3,   0.7, 0,
+                0,     0,     0,   1);
 
-        lmsProtanopia.put(0, 0,
-                0., 2.02344, -2.52581, 0.,
-                0., 1.,       0.,      0.,
-                0., 0.,       1.,      0.,
-                0., 0,        0,       1.);
+        protanopia.put(0, 0,
+                0.567, 0.433, 0,     0,
+                0.558, 0.442, 0,     0,
+                0,     0.242, 0.758, 0,
+                0,     0,     0,     1);
 
-        lmsTritanopia.put(0, 0,
-                 1.,       0.,       0., 0.,
-                 0.,       1.,       0., 0.,
-                -0.395913, 0.801109, 0., 0.,
-                 0.,       0.,       0., 1.);
+        tritanopia.put(0, 0,
+                0.95, 0.05,  0,     0,
+                0,    0.433, 0.567, 0,
+                0,    0.475, 0.525, 0,
+                0,    0,     0,     1);
     }
-
-    // Temporary matrices for calculus
-    final static private Mat useless  = new Mat();
-    static private Mat tmpRes = new Mat(4, 4, CvType.CV_32FC1);
-
 
 
     private Daltonism() {}
 
-    static Mat rgbaTransform(Mat lmsTransform) {
-        Mat res = new Mat(4, 4, CvType.CV_32FC1);
-        Core.gemm(lmsTransform, RGBA2LMS,  1, useless, 0, tmpRes);
-        Core.gemm(LMS2RGBA, tmpRes, 1, useless, 0, res);
-        return res;
-    }
-
-
     static void release() {
-        useless.release();
-        tmpRes.release();
-
-        RGBA2LMS.release();
-        LMS2RGBA.release();
-
-        lmsDeuteranopia.release();
-        lmsProtanopia.release();
-        lmsTritanopia.release();
+        deuteranopia.release();
+        protanopia.release();
+        tritanopia.release();
     }
 }

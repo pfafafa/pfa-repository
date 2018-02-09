@@ -66,7 +66,6 @@ class FrameProcFactory {
 
             @Override
             public void release() {
-                transform.release();
                 useless.release();
             }
         };
@@ -93,22 +92,22 @@ class FrameProcFactory {
      * @return a FrameProc simulating Deuteranopia
      */
     static FrameProc deuteranopia() {
-        Mat deuteranope = Daltonism.rgbaTransform(Daltonism.lmsDeuteranopia);
+        Mat deuteranope = Daltonism.deuteranopia;
         return makeFrameProc(deuteranope);
     }
 
     static FrameProc protanopia() {
-        Mat protanope = Daltonism.rgbaTransform(Daltonism.lmsProtanopia);
+        Mat protanope = Daltonism.protanopia;
         return makeFrameProc(protanope);
     }
 
     static FrameProc tritanopia() {
-        Mat tritanope = Daltonism.rgbaTransform(Daltonism.lmsTritanopia);
+        Mat tritanope = Daltonism.tritanopia;
         return makeFrameProc(tritanope);
     }
 
     static FrameProc noDaltonism() {
-        Mat nothing = Daltonism.rgbaTransform(Mat.eye(4, 4, CvType.CV_32FC1));
+        Mat nothing = Mat.eye(4, 4, CvType.CV_32FC1);
         return makeFrameProc(nothing);
     }
 

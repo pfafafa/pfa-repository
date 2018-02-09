@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">PFA</string>
+    <string name="tritanopia">Tritanopia</string>
+    <string name="protanopia">Protanopia</string>
+    <string name="deuteranopia">Deuteranopia</string>
+    <string name="noprocess">NoProcess</string>
 </resources>
