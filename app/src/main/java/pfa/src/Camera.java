@@ -1,8 +1,13 @@
 package pfa.src;
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
 import android.view.SurfaceView;
+import android.view.View;
+import android.view.Window;
+
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -18,25 +23,16 @@ import org.opencv.core.Mat;
 
 public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
 
-    private static final String TAG = "Camera";
+    static private final String TAG = "Camera";
+    static private Context appContext;
     private CameraBridgeViewBase cvCamera;
     private BaseLoaderCallback loaderCallback;
-    private Context appContext;
 
     private Mat rgba8uFrame;
     private Mat rgba32fFrame;
 
-    // Default frame processing do nothing
-    private static FrameProc frameProc = new FrameProc() {
-
-        public void start() {}
-
-        public Mat process(Mat rgbaFloatFrame) {
-            return rgbaFloatFrame;
-        }
-
-        public void release() {}
-    };
+    // Do nothing by default
+    private FrameProc frameProc = FrameProcFactory.noProcess();
 
 
     Camera(Context context, CameraBridgeViewBase c) {
@@ -77,10 +73,13 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
         cvCamera.enableView();
     }
 
-    void setFrameProc(FrameProc processer) {
-        processer.start();
+    /**
+     * @param proc can be given by FrameProcFactory
+     */
+    void setFrameProc(FrameProc proc) {
+        proc.start();
         FrameProc old = frameProc;
-        frameProc = processer;
+        frameProc = proc;
         old.release();
     }
 
@@ -93,8 +92,6 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
     public void onCameraViewStarted(int width, int height) {
         rgba8uFrame  = new Mat(height, width, CvType.CV_8UC4);
         rgba32fFrame = new Mat(height, width, CvType.CV_32FC4);
-
-        frameProc.start();
     }
 
     @Override
@@ -112,8 +109,6 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
     public void onCameraViewStopped() {
         rgba8uFrame.release();
         rgba32fFrame.release();
-
-        frameProc.release();
     }
 
 }
