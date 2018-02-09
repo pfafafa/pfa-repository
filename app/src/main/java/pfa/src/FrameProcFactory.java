@@ -107,4 +107,9 @@ class FrameProcFactory {
         return makeFrameProc(tritanope);
     }
 
+    static FrameProc noDaltonism() {
+        Mat nothing = Daltonism.rgbaTransform(Mat.eye(4, 4, CvType.CV_32FC1));
+        return makeFrameProc(nothing);
+    }
+
 }

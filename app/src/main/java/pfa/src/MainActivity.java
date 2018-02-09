@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Code here executes on main thread after user presses button
                 // set FrameProc when the camera is ready, (not ready yet after new and load)
-                camera.setFrameProc(FrameProcFactory.oneColor(2));
+                camera.setFrameProc(FrameProcFactory.noDaltonism());
             }
         });
     }
