@@ -10,7 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ToggleButton;
+import android.widget.CompoundButton;
 import android.widget.Button;
+
+import android.widget.SeekBar;
+import android.widget.Toast;
 
 import org.opencv.android.CameraBridgeViewBase;
 
@@ -36,35 +41,81 @@ public class MainActivity extends AppCompatActivity {
         camera = new Camera(this, (CameraBridgeViewBase) findViewById(R.id.camera_view));
 
         // Button
-        final Button button1 = findViewById(R.id.tritanopia);
-        button1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // set FrameProc when the camera is ready, (not ready yet after new and load)
-                camera.setFrameProc(FrameProcFactory.tritanopia());
+
+        final ToggleButton tb1 = findViewById(R.id.tritanopia);
+        final SeekBar ssbt = findViewById(R.id.seekBarTritanopia);
+        ssbt.setVisibility(View.GONE);
+
+        tb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    camera.setFrameProc(FrameProcFactory.tritanopia());
+                    ssbt.setVisibility(View.VISIBLE);
+                } else {
+                    camera.setFrameProc(FrameProcFactory.noProcess());
+                    ssbt.setVisibility(View.GONE);
+                }
             }
         });
 
-        final Button button2 = findViewById(R.id.protanopia);
-        button2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                camera.setFrameProc(FrameProcFactory.protanopia());
+
+
+        final ToggleButton tb2 = findViewById(R.id.protanopia);
+        final SeekBar ssbp= findViewById(R.id.seekBarProtanopia);
+        ssbp.setVisibility(View.GONE);
+
+        tb2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    camera.setFrameProc(FrameProcFactory.tritanopia());
+                    ssbp.setVisibility(View.VISIBLE);
+                } else {
+                    camera.setFrameProc(FrameProcFactory.noProcess());
+                    ssbp.setVisibility(View.GONE);
+                }
             }
         });
 
-        final Button button3 = findViewById(R.id.deuteranopia);
-        button3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                camera.setFrameProc(FrameProcFactory.deuteranopia());
+        final ToggleButton tb3 = findViewById(R.id.deuteranopia);
+        final SeekBar ssbd= findViewById(R.id.seekBarDeuteranopia);
+        ssbd.setVisibility(View.GONE);
+
+        tb3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    camera.setFrameProc(FrameProcFactory.tritanopia());
+                    ssbd.setVisibility(View.VISIBLE);
+                } else {
+                    camera.setFrameProc(FrameProcFactory.noProcess());
+                    ssbd.setVisibility(View.GONE);
+                }
             }
         });
 
-        final Button button4 = findViewById(R.id.noProcess);
-        button4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                camera.setFrameProc(FrameProcFactory.noProcess());
+
+
+
+
+
+
+
+        // perform seek bar change listener event used for getting the progress value
+        ssbt.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progressChangedValue = 0;
+
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                progressChangedValue = progress;
+            }
+
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(MainActivity.this, "Seek bar progress is :" + progressChangedValue,
+                        Toast.LENGTH_SHORT).show();
             }
         });
-
 
     }
 
