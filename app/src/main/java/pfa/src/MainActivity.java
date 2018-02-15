@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "OpenCVCamera";
     private Camera camera;
 
-    private float valueSsbtri = 0;
-    private float valueSsbpro = 0;
-    private float valueSsbdeu = 0;
+    private double valueSsbtri = 0;
+    private double valueSsbpro = 0;
+    private double valueSsbdeu = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
                     tb2.setChecked(false);
                     tb3.setChecked(false);
-                    camera.setFrameProc(FrameProcFactory.tritanopia(1));
+                    camera.setFrameProc(FrameProcFactory.tritanopia(getValueSsb(1)));
                     ssbtri.setVisibility(View.VISIBLE);
                 } else {
                     camera.setFrameProc(FrameProcFactory.noProcess());
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
                     tb1.setChecked(false);
                     tb3.setChecked(false);
-                    camera.setFrameProc(FrameProcFactory.protanopia( 1));
+                    camera.setFrameProc(FrameProcFactory.protanopia( getValueSsb(2)));
                     ssbpro.setVisibility(View.VISIBLE);
                 } else {
                     camera.setFrameProc(FrameProcFactory.noProcess());
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
                     tb2.setChecked(false);
                     tb1.setChecked(false);
-                    camera.setFrameProc(FrameProcFactory.deuteranopia(1));
+                    camera.setFrameProc(FrameProcFactory.deuteranopia(getValueSsb(3)));
                     ssbdeu.setVisibility(View.VISIBLE);
                 } else {
                     camera.setFrameProc(FrameProcFactory.noProcess());
@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
             public void onStopTrackingTouch(SeekBar seekBar) {
+                valueSsbdeu = getValueSsb(3);
                 Toast.makeText(MainActivity.this,
                         "Seek bar progress is :" + getValueSsb(3),
                         Toast.LENGTH_SHORT).show();
@@ -145,26 +146,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //valueSsb...
-    protected float getValueSsb(int i){
+    protected double getValueSsb(int i){
+
         //1 = Tri
         //2 = Pro
         //3 = Deu
         if (i == 1)
-            return valueSsbtri/100;
+            return valueSsbtri/10;
         if (i == 2)
-            return valueSsbpro/100;
+            return valueSsbpro/10;
         if (i == 3)
-            return valueSsbdeu/100;
+            return valueSsbdeu/10;
         return 1;
     }
 
     protected void setValueSsb(int i, int prog){
         if (i == 1)
-            valueSsbtri = prog;
+            this.valueSsbtri = prog;
         if (i == 2)
-            valueSsbpro = prog;
+            this.valueSsbpro = prog;
         if (i == 3)
-            valueSsbdeu = prog;
+            this.valueSsbdeu = prog;
     }
 
 
