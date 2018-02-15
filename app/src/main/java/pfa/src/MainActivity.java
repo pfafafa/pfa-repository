@@ -24,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "OpenCVCamera";
     private Camera camera;
 
+    private float valueSsbtri = 0;
+    private float valueSsbpro = 0;
+    private float valueSsbdeu = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,29 +100,75 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
         // perform seek bar change listener event used for getting the progress value
         ssbtri.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progressChangedValue = 0;
-
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progressChangedValue = progress;
+                setValueSsb(1, progress);
             }
-
             public void onStartTrackingTouch(SeekBar seekBar) {
                 // TODO Auto-generated method stub
             }
-
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(MainActivity.this, "Seek bar progress is :" + progressChangedValue,
+                Toast.makeText(MainActivity.this,
+                        "Seek bar progress is :" + getValueSsb(1),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        ssbpro.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                setValueSsb(2, progress);
+            }
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(MainActivity.this,
+                        "Seek bar progress is :" + getValueSsb(2),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+        ssbdeu.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                setValueSsb(3, progress);
+            }
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                Toast.makeText(MainActivity.this,
+                        "Seek bar progress is :" + getValueSsb(3),
                         Toast.LENGTH_SHORT).show();
             }
         });
 
+
+    }
+
+    //valueSsb...
+    protected float getValueSsb(int i){
+        //1 = Tri
+        //2 = Pro
+        //3 = Deu
+        if (i == 1)
+            return valueSsbtri/100;
+        if (i == 2)
+            return valueSsbpro/100;
+        if (i == 3)
+            return valueSsbdeu/100;
+        return 1;
+    }
+
+    protected void setValueSsb(int i, int prog){
+        if (i == 1)
+            valueSsbtri = prog;
+        if (i == 2)
+            valueSsbpro = prog;
+        if (i == 3)
+            valueSsbdeu = prog;
     }
 
 
+    //
     @Override
     protected void onResume() {
         super.onResume();
