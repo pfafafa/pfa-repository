@@ -20,6 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
+    <!--Masquage du bouton "Original"
     <ToggleButton
         android:id="@+id/noProcess"
         android:textOff="Original"
@@ -35,6 +36,7 @@
         app:layout_constraintStart_toEndOf="@+id/camera_view"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.734" />
+        -->
 
     <ToggleButton
         android:id="@+id/deuteranopia"

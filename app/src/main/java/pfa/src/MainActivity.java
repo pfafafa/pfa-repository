@@ -42,16 +42,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Button
         final ToggleButton tb1 = findViewById(R.id.tritanopia);
-        final SeekBar ssbt = findViewById(R.id.seekBarTritanopia);
-        ssbt.setVisibility(View.GONE);
+        final SeekBar ssbtri = findViewById(R.id.seekBarTritanopia);
+        ssbtri.setVisibility(View.GONE);
 
         final ToggleButton tb2 = findViewById(R.id.protanopia);
-        final SeekBar ssbp= findViewById(R.id.seekBarProtanopia);
-        ssbp.setVisibility(View.GONE);
+        final SeekBar ssbpro= findViewById(R.id.seekBarProtanopia);
+        ssbpro.setVisibility(View.GONE);
 
         final ToggleButton tb3 = findViewById(R.id.deuteranopia);
-        final SeekBar ssbd= findViewById(R.id.seekBarDeuteranopia);
-        ssbd.setVisibility(View.GONE);
+        final SeekBar ssbdeu= findViewById(R.id.seekBarDeuteranopia);
+        ssbdeu.setVisibility(View.GONE);
 
         tb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -59,10 +59,10 @@ public class MainActivity extends AppCompatActivity {
                     tb2.setChecked(false);
                     tb3.setChecked(false);
                     camera.setFrameProc(FrameProcFactory.tritanopia());
-                    ssbt.setVisibility(View.VISIBLE);
+                    ssbtri.setVisibility(View.VISIBLE);
                 } else {
                     camera.setFrameProc(FrameProcFactory.noProcess());
-                    ssbt.setVisibility(View.GONE);
+                    ssbtri.setVisibility(View.GONE);
                 }
             }
         });
@@ -73,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
                     tb1.setChecked(false);
                     tb3.setChecked(false);
                     camera.setFrameProc(FrameProcFactory.tritanopia());
-                    ssbp.setVisibility(View.VISIBLE);
+                    ssbpro.setVisibility(View.VISIBLE);
                 } else {
                     camera.setFrameProc(FrameProcFactory.noProcess());
-                    ssbp.setVisibility(View.GONE);
+                    ssbpro.setVisibility(View.GONE);
                 }
             }
         });
@@ -87,10 +87,10 @@ public class MainActivity extends AppCompatActivity {
                     tb2.setChecked(false);
                     tb1.setChecked(false);
                     camera.setFrameProc(FrameProcFactory.tritanopia());
-                    ssbd.setVisibility(View.VISIBLE);
+                    ssbdeu.setVisibility(View.VISIBLE);
                 } else {
                     camera.setFrameProc(FrameProcFactory.noProcess());
-                    ssbd.setVisibility(View.GONE);
+                    ssbdeu.setVisibility(View.GONE);
                 }
             }
         });
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // perform seek bar change listener event used for getting the progress value
-        ssbt.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        ssbtri.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             int progressChangedValue = 0;
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
