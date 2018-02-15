@@ -41,14 +41,23 @@ public class MainActivity extends AppCompatActivity {
         camera = new Camera(this, (CameraBridgeViewBase) findViewById(R.id.camera_view));
 
         // Button
-
         final ToggleButton tb1 = findViewById(R.id.tritanopia);
         final SeekBar ssbt = findViewById(R.id.seekBarTritanopia);
         ssbt.setVisibility(View.GONE);
 
+        final ToggleButton tb2 = findViewById(R.id.protanopia);
+        final SeekBar ssbp= findViewById(R.id.seekBarProtanopia);
+        ssbp.setVisibility(View.GONE);
+
+        final ToggleButton tb3 = findViewById(R.id.deuteranopia);
+        final SeekBar ssbd= findViewById(R.id.seekBarDeuteranopia);
+        ssbd.setVisibility(View.GONE);
+
         tb1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    tb2.setChecked(false);
+                    tb3.setChecked(false);
                     camera.setFrameProc(FrameProcFactory.tritanopia());
                     ssbt.setVisibility(View.VISIBLE);
                 } else {
@@ -58,15 +67,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
-
-        final ToggleButton tb2 = findViewById(R.id.protanopia);
-        final SeekBar ssbp= findViewById(R.id.seekBarProtanopia);
-        ssbp.setVisibility(View.GONE);
-
         tb2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    tb1.setChecked(false);
+                    tb3.setChecked(false);
                     camera.setFrameProc(FrameProcFactory.tritanopia());
                     ssbp.setVisibility(View.VISIBLE);
                 } else {
@@ -76,13 +81,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final ToggleButton tb3 = findViewById(R.id.deuteranopia);
-        final SeekBar ssbd= findViewById(R.id.seekBarDeuteranopia);
-        ssbd.setVisibility(View.GONE);
-
         tb3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
+                    tb2.setChecked(false);
+                    tb1.setChecked(false);
                     camera.setFrameProc(FrameProcFactory.tritanopia());
                     ssbd.setVisibility(View.VISIBLE);
                 } else {
@@ -91,10 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-
-
 
 
 
