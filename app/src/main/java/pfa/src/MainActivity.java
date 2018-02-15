@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
                     tb1.setChecked(false);
                     tb3.setChecked(false);
-                    camera.setFrameProc(FrameProcFactory.tritanopia(1));
+                    camera.setFrameProc(FrameProcFactory.protanopia( 1));
                     ssbpro.setVisibility(View.VISIBLE);
                 } else {
                     camera.setFrameProc(FrameProcFactory.noProcess());
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 if (isChecked) {
                     tb2.setChecked(false);
                     tb1.setChecked(false);
-                    camera.setFrameProc(FrameProcFactory.tritanopia(1));
+                    camera.setFrameProc(FrameProcFactory.deuteranopia(1));
                     ssbdeu.setVisibility(View.VISIBLE);
                 } else {
                     camera.setFrameProc(FrameProcFactory.noProcess());
