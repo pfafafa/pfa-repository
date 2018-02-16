@@ -29,9 +29,13 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     private double valueSsbpro = 0;
     private double valueSsbdeu = 0;
 
-    private ToggleButton tb1;
-    private ToggleButton tb2;
-    private ToggleButton tb3;
+    private ToggleButton tb_tritanopia_simulation;
+    private ToggleButton tb_protanopia_simulation;
+    private ToggleButton tb_deuteranopia_simulation;
+
+    private ToggleButton tb_tritanopia_correction;
+    private ToggleButton tb_protanopia_correction;
+    private ToggleButton tb_deuteranopia_correction;
 
     private SeekBar ssbtri;
     private SeekBar ssbdeu;
@@ -53,24 +57,38 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         }
         camera = new Camera(this, (CameraBridgeViewBase) findViewById(R.id.camera_view));
 
-        // Button
-        tb1 = findViewById(R.id.tritanopia);
+        // Button Simulation
+        tb_tritanopia_simulation = findViewById(R.id.tritanopia_simulation);
         ssbtri = findViewById(R.id.seekBarTritanopia);
         ssbtri.setVisibility(View.GONE);
 
-        tb2 = findViewById(R.id.protanopia);
+        tb_protanopia_simulation = findViewById(R.id.protanopia_simulation);
         ssbpro= findViewById(R.id.seekBarProtanopia);
         ssbpro.setVisibility(View.GONE);
 
-        tb3 = findViewById(R.id.deuteranopia);
+        tb_deuteranopia_simulation = findViewById(R.id.deuteranopia_simulation);
         ssbdeu= findViewById(R.id.seekBarDeuteranopia);
         ssbdeu.setVisibility(View.GONE);
 
-        tb1.setOnCheckedChangeListener(this);
+        //Button Correction
+        tb_tritanopia_correction = findViewById(R.id.tritanopia_correction);
 
-        tb2.setOnCheckedChangeListener(this);
+        tb_protanopia_correction = findViewById(R.id.protanopia_correction);
 
-        tb3.setOnCheckedChangeListener(this);
+        tb_deuteranopia_correction = findViewById(R.id.deuteranopia_correction);
+
+        // Button Listener
+        tb_tritanopia_simulation.setOnCheckedChangeListener(this);
+
+        tb_protanopia_simulation.setOnCheckedChangeListener(this);
+
+        tb_deuteranopia_simulation.setOnCheckedChangeListener(this);
+
+        tb_tritanopia_correction.setOnCheckedChangeListener(this);
+
+        tb_protanopia_correction.setOnCheckedChangeListener(this);
+
+        tb_deuteranopia_correction.setOnCheckedChangeListener(this);
 
         // perform seek bar change listener event used for getting the progress value
         ssbtri.setOnSeekBarChangeListener(this);
@@ -84,10 +102,12 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
 
-        if (compoundButton.getId() == R.id.tritanopia) {
+        //Listener Button Simulation
+
+        if (compoundButton == tb_tritanopia_simulation) {
             if (isChecked) {
-                tb2.setChecked(false);
-                tb3.setChecked(false);
+                tb_protanopia_simulation.setChecked(false);
+                tb_deuteranopia_simulation.setChecked(false);
                 //camera.setFrameProc(FrameProcFactory.tritanopia(getValueSsb(1)));
                 camera.setFrameProc(FrameProcFactory.tritanopia(1));
                 ssbtri.setVisibility(View.VISIBLE);
@@ -96,10 +116,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 ssbtri.setVisibility(View.GONE);
             }
         }
-        else if (compoundButton.getId() == R.id.protanopia) {
+        if (compoundButton == tb_protanopia_simulation) {
             if (isChecked) {
-                tb1.setChecked(false);
-                tb3.setChecked(false);
+                tb_tritanopia_simulation.setChecked(false);
+                tb_deuteranopia_simulation.setChecked(false);
                 //camera.setFrameProc(FrameProcFactory.protanopia( getValueSsb(2)));
                 camera.setFrameProc(FrameProcFactory.protanopia(1));
                 ssbpro.setVisibility(View.VISIBLE);
@@ -108,10 +128,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 ssbpro.setVisibility(View.GONE);
             }
         }
-        else if (compoundButton.getId() == R.id.deuteranopia) {
+        if (compoundButton == tb_deuteranopia_simulation) {
             if (isChecked) {
-                tb2.setChecked(false);
-                tb1.setChecked(false);
+                tb_protanopia_simulation.setChecked(false);
+                tb_tritanopia_simulation.setChecked(false);
                 //camera.setFrameProc(FrameProcFactory.deuteranopia(getValueSsb(3)));
                 camera.setFrameProc(FrameProcFactory.deuteranopia(1));
                 ssbdeu.setVisibility(View.VISIBLE);
@@ -120,19 +140,52 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
                 ssbdeu.setVisibility(View.GONE);
             }
         }
+
+        //Listener Button Correction
+
+        if (compoundButton == tb_tritanopia_correction) {
+            if (isChecked) {
+                tb_protanopia_correction.setChecked(false);
+                tb_deuteranopia_correction.setChecked(false);
+                //camera.setFrameProc(FrameProcFactory.tritanopia(getValueSsb(1)));
+                camera.setFrameProc(FrameProcFactory.correctTritanopia(0));
+            } else {
+                camera.setFrameProc(FrameProcFactory.noProcess());
+            }
+        }
+        if (compoundButton == tb_protanopia_correction) {
+            if (isChecked) {
+                tb_tritanopia_correction.setChecked(false);
+                tb_deuteranopia_correction.setChecked(false);
+                //camera.setFrameProc(FrameProcFactory.protanopia( getValueSsb(2)));
+                camera.setFrameProc(FrameProcFactory.correctProtanopia(0));
+            } else {
+                camera.setFrameProc(FrameProcFactory.noProcess());
+            }
+        }
+        if (compoundButton == tb_deuteranopia_correction) {
+            if (isChecked) {
+                tb_protanopia_correction.setChecked(false);
+                tb_tritanopia_correction.setChecked(false);
+                //camera.setFrameProc(FrameProcFactory.deuteranopia(getValueSsb(3)));
+                camera.setFrameProc(FrameProcFactory.correctDeuteranopia(0));
+            } else {
+                camera.setFrameProc(FrameProcFactory.noProcess());
+            }
+        }
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-        if (seekBar.getId() == R.id.tritanopia) {
+        if (seekBar.getId() == R.id.tritanopia_simulation) {
             setValueSsb(1, progress);
         }
 
-        if (seekBar.getId() == R.id.protanopia) {
+        if (seekBar.getId() == R.id.protanopia_simulation) {
             setValueSsb(2, progress);
         }
 
-        if (seekBar.getId() == R.id.deuteranopia) {
+        if (seekBar.getId() == R.id.deuteranopia_simulation) {
             setValueSsb(3, progress);
         }
 
@@ -146,19 +199,19 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
 
-        if (seekBar.getId() == R.id.tritanopia) {
+        if (seekBar.getId() == R.id.tritanopia_simulation) {
             Toast.makeText(MainActivity.this,
                     "Seek bar progress is :" + getValueSsb(1),
                     Toast.LENGTH_SHORT).show();
         }
 
-        if (seekBar.getId() == R.id.protanopia) {
+        if (seekBar.getId() == R.id.protanopia_simulation) {
             Toast.makeText(MainActivity.this,
                     "Seek bar progress is :" + getValueSsb(2),
                     Toast.LENGTH_SHORT).show();
         }
 
-        if (seekBar.getId() == R.id.deuteranopia) {
+        if (seekBar.getId() == R.id.deuteranopia_simulation) {
             Toast.makeText(MainActivity.this,
                     "Seek bar progress is :" + getValueSsb(3),
                     Toast.LENGTH_SHORT).show();
