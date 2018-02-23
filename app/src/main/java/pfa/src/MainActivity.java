@@ -108,8 +108,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             if (isChecked) {
                 tb_protanopia_simulation.setChecked(false);
                 tb_deuteranopia_simulation.setChecked(false);
-                //camera.setFrameProc(FrameProcFactory.tritanopia(getValueSsb(1)));
-                camera.setFrameProc(FrameProcFactory.tritanopia(1));
+                tb_protanopia_correction.setChecked(false);
+                tb_deuteranopia_correction.setChecked(false);
+                tb_tritanopia_correction.setChecked(false);
+                camera.setFrameProc(FrameProcFactory.tritanopia(getValueSsb(1)));
                 ssbtri.setVisibility(View.VISIBLE);
             } else {
                 camera.setFrameProc(FrameProcFactory.noProcess());
@@ -120,8 +122,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             if (isChecked) {
                 tb_tritanopia_simulation.setChecked(false);
                 tb_deuteranopia_simulation.setChecked(false);
-                //camera.setFrameProc(FrameProcFactory.protanopia( getValueSsb(2)));
-                camera.setFrameProc(FrameProcFactory.protanopia(1));
+                tb_protanopia_correction.setChecked(false);
+                tb_deuteranopia_correction.setChecked(false);
+                tb_tritanopia_correction.setChecked(false);
+                camera.setFrameProc(FrameProcFactory.protanopia(getValueSsb(2)));
                 ssbpro.setVisibility(View.VISIBLE);
             } else {
                 camera.setFrameProc(FrameProcFactory.noProcess());
@@ -132,8 +136,10 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             if (isChecked) {
                 tb_protanopia_simulation.setChecked(false);
                 tb_tritanopia_simulation.setChecked(false);
-                //camera.setFrameProc(FrameProcFactory.deuteranopia(getValueSsb(3)));
-                camera.setFrameProc(FrameProcFactory.deuteranopia(1));
+                tb_protanopia_correction.setChecked(false);
+                tb_deuteranopia_correction.setChecked(false);
+                tb_tritanopia_correction.setChecked(false);
+                camera.setFrameProc(FrameProcFactory.deuteranopia(getValueSsb(3)));
                 ssbdeu.setVisibility(View.VISIBLE);
             } else {
                 camera.setFrameProc(FrameProcFactory.noProcess());
@@ -147,6 +153,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             if (isChecked) {
                 tb_protanopia_correction.setChecked(false);
                 tb_deuteranopia_correction.setChecked(false);
+                tb_protanopia_simulation.setChecked(false);
+                tb_tritanopia_simulation.setChecked(false);
+                tb_deuteranopia_simulation.setChecked(false);
                 //camera.setFrameProc(FrameProcFactory.tritanopia(getValueSsb(1)));
                 camera.setFrameProc(FrameProcFactory.correctTritanopia(0));
             } else {
@@ -157,6 +166,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             if (isChecked) {
                 tb_tritanopia_correction.setChecked(false);
                 tb_deuteranopia_correction.setChecked(false);
+                tb_protanopia_simulation.setChecked(false);
+                tb_tritanopia_simulation.setChecked(false);
+                tb_deuteranopia_simulation.setChecked(false);
                 //camera.setFrameProc(FrameProcFactory.protanopia( getValueSsb(2)));
                 camera.setFrameProc(FrameProcFactory.correctProtanopia(0));
             } else {
@@ -167,6 +179,9 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
             if (isChecked) {
                 tb_protanopia_correction.setChecked(false);
                 tb_tritanopia_correction.setChecked(false);
+                tb_protanopia_simulation.setChecked(false);
+                tb_tritanopia_simulation.setChecked(false);
+                tb_deuteranopia_simulation.setChecked(false);
                 //camera.setFrameProc(FrameProcFactory.deuteranopia(getValueSsb(3)));
                 camera.setFrameProc(FrameProcFactory.correctDeuteranopia(0));
             } else {
@@ -177,16 +192,19 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean b) {
-        if (seekBar.getId() == R.id.tritanopia_simulation) {
+        if (seekBar == ssbtri) {
             setValueSsb(1, progress);
+            camera.setFrameProc(FrameProcFactory.tritanopia(getValueSsb(1)));
         }
 
-        if (seekBar.getId() == R.id.protanopia_simulation) {
+        if (seekBar == ssbpro) {
             setValueSsb(2, progress);
+            camera.setFrameProc(FrameProcFactory.protanopia(getValueSsb(2)));
         }
 
-        if (seekBar.getId() == R.id.deuteranopia_simulation) {
+        if (seekBar == ssbdeu) {
             setValueSsb(3, progress);
+            camera.setFrameProc(FrameProcFactory.deuteranopia(getValueSsb(3)));
         }
 
     }
@@ -228,11 +246,11 @@ public class MainActivity extends AppCompatActivity implements CompoundButton.On
         //2 = Pro
         //3 = Deu
         if (i == 1)
-            return valueSsbtri/10;
+            return valueSsbtri/100;
         if (i == 2)
-            return valueSsbpro/10;
+            return valueSsbpro/100;
         if (i == 3)
-            return valueSsbdeu/10;
+            return valueSsbdeu/100;
         return 1;
     }
 
