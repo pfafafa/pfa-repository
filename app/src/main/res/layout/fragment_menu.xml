@@ -1,0 +1,223 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="pfa.src.MenuFragment">
+
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.418"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.097">
+
+        <!--Bouton Simulation -->
+
+        <RadioButton
+            android:id="@+id/deuteranopia_simulation"
+            android:layout_width="121dp"
+            android:layout_height="31dp"
+
+            android:text="Deuteranopia" />
+
+        <RadioButton
+            android:id="@+id/tritanopia_simulation"
+            android:layout_width="104dp"
+            android:layout_height="31dp"
+
+            android:text="Tritanopia" />
+
+        <RadioButton
+            android:id="@+id/protanopia_simulation"
+            android:layout_width="101dp"
+            android:layout_height="37dp"
+
+            android:text="Protanopia" />
+
+        <!--Bouton to leave space between Simulation and Correction-->
+
+        <RadioButton
+            android:id="@+id/button_hide"
+            android:layout_width="104dp"
+            android:layout_height="31dp"
+
+            android:text="" />
+
+        <!--Bouton Correction -->
+
+        <RadioButton
+            android:id="@+id/deuteranopia_correction"
+            android:layout_width="121dp"
+            android:layout_height="31dp"
+
+            android:text="Deuteranopia" />
+
+        <RadioButton
+            android:id="@+id/tritanopia_correction"
+            android:layout_width="104dp"
+            android:layout_height="31dp"
+
+            android:text="Tritanopia" />
+
+        <RadioButton
+            android:id="@+id/protanopia_correction"
+            android:layout_width="101dp"
+            android:layout_height="37dp"
+
+            android:text="Protanopia" />
+    </RadioGroup>
+
+    <!-- Bouton pour lancer la camera avec les traitements-->
+
+    <Button
+        android:id="@+id/launchCamera"
+        android:layout_width="144dp"
+        android:layout_height="wrap_content"
+        android:text="Lancer la camera"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.933"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.947" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="80dp"
+        android:layout_height="28dp"
+        android:text="Simulation"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.066" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="80dp"
+        android:layout_height="28dp"
+        android:text="Correction"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.307" />
+
+
+    <!--Bouton Simulation -->
+<!--
+    <ToggleButton
+        android:id="@+id/deuteranopia_simulation"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:textOff="Deuteranopia"
+        android:textOn="Deuteranopia"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594" />
+
+    <ToggleButton
+        android:id="@+id/tritanopia_simulation"
+        android:layout_width="133dp"
+        android:layout_height="wrap_content"
+        android:textOff="Tritanopia"
+        android:textOn="Tritanopia"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.749" />
+
+
+    <ToggleButton
+        android:id="@+id/protanopia_simulation"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:textOff="Protanopia"
+        android:textOn="Protanopia"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903" />
+
+
+    <ToggleButton
+        android:id="@+id/deuteranopia_correction"
+        android:layout_width="135dp"
+        android:layout_height="wrap_content"
+        android:textOff="Deuteranopia"
+        android:textOn="Deuteranopia"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594" />
+
+    <ToggleButton
+        android:id="@+id/tritanopia_correction"
+        android:layout_width="133dp"
+        android:layout_height="wrap_content"
+        android:textOff="Tritanopia"
+        android:textOn="Tritanopia"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.749" />
+
+    <ToggleButton
+        android:id="@+id/protanopia_correction"
+        android:layout_width="132dp"
+        android:layout_height="wrap_content"
+        android:textOff="Protanopia"
+        android:textOn="Protanopia"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.903" />
+    -->
+
+</android.support.constraint.ConstraintLayout>
