@@ -78,9 +78,9 @@ class Daltonism {
     static Mat correctionMat(Mat blindnessMat) {
         Mat res = new Mat(4, 4, CvType.CV_32FC1);
 
-        Core.gemm(blindnessMat, correction, 1, idendity, 0, tmpMult);
-        Core.subtract(correction, tmpMult, tmpSub);
-        Core.add(tmpSub, idendity, res);
+        Core.gemm(blindnessMat, correction, 1, idendity, 0, tmpMult); //matrix multiplication
+        Core.subtract(correction, tmpMult, tmpSub); //Calculates the per-element difference between two arrays or array and a scalar.
+        Core.add(tmpSub, idendity, res); //Computes the per-element sum of two arrays or an array and a scalar.
 
         return res;
     }
