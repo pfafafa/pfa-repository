@@ -159,8 +159,8 @@ public class CameraFragment extends Fragment {
      *
      * @param progress Progress of the SeekBar
      */
-    protected void setValueSeekBar(int progress){
-        valueSeekBar = progress / 10;
+    protected void setValueSeekBar(double progress){
+        valueSeekBar = progress / 100;
     }
 
 
