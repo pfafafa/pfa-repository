@@ -12,6 +12,17 @@ import org.opencv.core.Mat;
 
 class FrameProcFactory {
 
+    /**
+     * Variable to set the type of the image processing wanted.
+     * Used in {@link CameraFragment}.
+     */
+    static final int TRITANOPIA = 1;
+    static final int DEUTERANOPIA = 2;
+    static final int PROTANOPIA = 3;
+    static final int CORRECT_TRITANOPIA = 4;
+    static final int CORRECT_DEUTERANOPIA = 5;
+    static final int CORRECT_PROTANOPIA = 6;
+
     private FrameProcFactory() {}
 
     /**
