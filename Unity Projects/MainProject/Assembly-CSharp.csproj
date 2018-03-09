@@ -51,7 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Camera\CameraFlow.cs" />
      <Compile Include="Assets\Daltonisme\ColorBlindFilter.cs" />
+     <Compile Include="Assets\Daltonisme\ColorBlindMatrix.cs" />
      <Compile Include="Assets\SideBySide\AndroidWebcamDisplay.cs" />
      <Compile Include="Assets\SideBySide\FPSCounter.cs" />
      <None Include="Assets\SideBySide\ShaderFisheye.shader" />
