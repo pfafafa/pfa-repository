@@ -52,6 +52,7 @@ public class CameraFragment extends Fragment {
                 setFrameImageProcessing(mFrameProc);
                 button.setVisibility(View.GONE);
                 seekBar.setVisibility(View.VISIBLE);
+                seekBar.setProgress(50);
             }
         });
 
@@ -160,7 +161,7 @@ public class CameraFragment extends Fragment {
      * @param progress Progress of the SeekBar
      */
     protected void setValueSeekBar(double progress){
-        valueSeekBar = progress / 100;
+        valueSeekBar = progress /50;
     }
 
 
