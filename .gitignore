@@ -7,3 +7,5 @@
 /Application/build
 openCVLibrary340/build/*
 .externalNativeBuild
+Unity\ Projects/MainProject/Library
+Unity\ Projects/MainProject/Temp
