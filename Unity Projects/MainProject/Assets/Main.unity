@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 1536889796}
   - component: {fileID: 1536889801}
   - component: {fileID: 1536889802}
+  - component: {fileID: 1536889803}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -210,13 +211,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1536889795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aae9ade64f17b624e8f21b126cb6f13e, type: 3}
+  m_Script: {fileID: 11500000, guid: af6af8b207fa44c8d8c10c24f85fd5ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderMaterial: {fileID: 2100000, guid: 49fb56139722a214493e9899073cc6e1, type: 2}
-  backupImage: {fileID: 0}
-  FOV: 1.36
-  Disparity: 0.1
 --- !u!114 &1536889802
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,7 +222,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1536889795}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75ef3d3a90250f940860f4733f93ce6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 2812473c94b23413582388a9f41fa1a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   mode: 0
+  correction: 0
+--- !u!114 &1536889803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1536889795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae9ade64f17b624e8f21b126cb6f13e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderMaterial: {fileID: 0}
+  FOV: 1.6
+  Disparity: 0.1

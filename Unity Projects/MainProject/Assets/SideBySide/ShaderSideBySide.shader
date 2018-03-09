@@ -1,15 +1,13 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
+﻿
 // Author: Long Qian
 // Email: lqian8@jhu.edu
 
-Shader "Custom/FakeAR"
+Shader "Hidden/SideBySide"
 {
 	Properties{
 		_MainTex("", 2D) = "white" {}
 		[HideInInspector]_FOV("FOV", Range(1, 2)) = 1.6
 		[HideInInspector]_Disparity("Disparity", Range(0, 0.3)) = 0.1
-		[HideInInspector]_Alpha("Alpha", Range(0, 2.0)) = 1.0
 	}
 
 	SubShader{
@@ -37,8 +35,6 @@ Shader "Custom/FakeAR"
 			sampler2D _MainTex;
 			float _FOV;
 
-			// Alpha is the ratio of pixel density: width to height
-			float _Alpha;
 			// Disparity is the portion to separate
 			// larger disparity cause closer stereovision
 			float _Disparity;
@@ -66,10 +62,10 @@ Shader "Custom/FakeAR"
 					return fixed4(0, 0, 0, 1);
 				}
 				else {
-					offset = 0.5 - _Alpha * 0.5 + _Disparity * 0.5 - _Disparity * sign(i.uv.x < 0.5);
+					offset = 0.5 - 0.25 + _Disparity * 0.5 - _Disparity * sign(i.uv.x < 0.5);
 					// uv3 is the remap of image texture
 					uv3 = uv2;
-					uv3.x = uv2.x * _Alpha + offset;
+					uv3.x = uv2.x * 0.5 + offset;
 					return tex2D(_MainTex, uv3);
 				}				
 			}
