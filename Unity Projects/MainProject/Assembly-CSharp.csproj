@@ -55,7 +55,6 @@
      <Compile Include="Assets\Daltonisme\ColorBlindFilter.cs" />
      <Compile Include="Assets\Daltonisme\ColorBlindMatrix.cs" />
      <Compile Include="Assets\SideBySide\SideBySide.cs" />
-     <None Include="Assets\SideBySide\ShaderFisheye.shader" />
      <None Include="Assets\SideBySide\ShaderSideBySide.shader" />
      <None Include="Assets\Daltonisme\ChannelMixer.shader" />
  <Reference Include="UnityEngine.UIAutomation">

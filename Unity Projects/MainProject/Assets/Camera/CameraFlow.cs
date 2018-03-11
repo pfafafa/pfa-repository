@@ -6,7 +6,7 @@ using System.Collections;
 
 
 /*
- * Replace the Unity camera view by the camera of the device
+ * Replace the Unity camera view by the camera view of the device
  */
 public class CameraFlow: MonoBehaviour {
     

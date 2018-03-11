@@ -2,7 +2,7 @@
 // Email: lqian8@jhu.edu
 
 using UnityEngine;
-using System.Collections;
+
 
 public class SideBySide : MonoBehaviour {
    
@@ -16,13 +16,10 @@ public class SideBySide : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
-
 		// Never turn off the screen
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
-
 		shaderAR = new Material (Shader.Find ("Hidden/SideBySide"));
 	}
-
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
 
@@ -32,4 +29,12 @@ public class SideBySide : MonoBehaviour {
 
 		Graphics.Blit(src, dst, shaderAR);
 	}
+
+//	public void SetFOV(float fov) {
+//		shaderAR.SetFloat("_FOV", fov);
+//	}
+//
+//	public void SetDisparity(float disparity) {
+//		shaderAR.SetFloat("_Disparity", disparity);
+//	}
 }

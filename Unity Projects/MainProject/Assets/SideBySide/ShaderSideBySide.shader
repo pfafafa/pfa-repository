@@ -1,5 +1,4 @@
-﻿
-// Author: Long Qian
+﻿// Author: Long Qian
 // Email: lqian8@jhu.edu
 
 Shader "Hidden/SideBySide"

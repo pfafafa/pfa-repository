@@ -1,6 +1,4 @@
-﻿// Alan Zucconi
-// www.alanzucconi.com
-Shader "Hidden/ChannelMixer" {
+﻿Shader "Hidden/ChannelMixer" {
 
 	Properties {
 		_MainTex("Base (RGB)", 2D) = "white" {}
