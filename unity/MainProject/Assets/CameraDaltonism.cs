@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 /*
  * Replace the Unity camera view by the camera of the device
  */
-public class CameraDaltonisme: MonoBehaviour {
+public class CameraDaltonism: MonoBehaviour {
 
 	private WebCamTexture mCamera;
 
@@ -28,7 +28,7 @@ public class CameraDaltonisme: MonoBehaviour {
 			return;
 		}
 
-		material = new Material(Shader.Find("Hidden/ChannelMixer"));
+		material = new Material(Shader.Find("PFA/ChannelMixer"));
 		material.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(mode, correction, 1f));
 
 		// Checks how many and which cameras are available on the device

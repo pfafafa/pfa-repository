@@ -13,7 +13,7 @@ public class ColorBlindFilter : MonoBehaviour {
 
 
 	void Start () {		
-		material = new Material(Shader.Find("Hidden/ChannelMixer"));
+		material = new Material(Shader.Find("PFA/ChannelMixer"));
 		material.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(ColorBlindMode.NoColorBlind, false, 1f));
 	}
 

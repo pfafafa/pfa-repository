@@ -1,7 +1,7 @@
 ﻿// Author: Long Qian
 // Email: lqian8@jhu.edu
 
-Shader "Hidden/SideBySide"
+Shader "PFA/SideBySide"
 {
 	Properties{
 		_MainTex("", 2D) = "white" {}

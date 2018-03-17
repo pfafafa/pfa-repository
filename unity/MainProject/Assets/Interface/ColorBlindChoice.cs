@@ -8,7 +8,7 @@ public class ColorBlindChoice: MonoBehaviour {
 	// Contoller on the GUI
 	public Dropdown colorBlindChoices;
 	public Toggle correctionToggle;
-	public Image preview;
+	public Material shader;
 
 
 	void Start () {
@@ -20,20 +20,23 @@ public class ColorBlindChoice: MonoBehaviour {
 
 		colorBlindChoices.ClearOptions ();
 		colorBlindChoices.AddOptions (optionList);
+
+		shader.SetMatrix ("_mat", Matrix4x4.identity);
 	}
 
 
 	/*
 	 * Getter from the interface
 	 */
-	private ColorBlindMode GetColorBlindChoice() {
+	private ColorBlindMode ColorBlindMode() {
 		return (ColorBlindMode) colorBlindChoices.value;
 	}
 		
-	private bool GetCorrection() {
+	private bool CorrectionBool() {
 		return correctionToggle.isOn;
 	}
 
-
-	//TODO: apply color filter on the image at each event
+	public void UpdatePreview() {
+		shader.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(ColorBlindMode(), CorrectionBool(), 1f));
+	}
 }

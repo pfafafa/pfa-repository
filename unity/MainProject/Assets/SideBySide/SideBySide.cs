@@ -19,7 +19,7 @@ public class SideBySide : MonoBehaviour {
 	void Start() {
 		// Never turn off the screen
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
-		shaderAR = new Material (Shader.Find ("Hidden/SideBySide"));
+		shaderAR = new Material (Shader.Find ("PFA/SideBySide"));
 	}
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
