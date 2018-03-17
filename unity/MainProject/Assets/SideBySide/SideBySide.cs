@@ -13,6 +13,7 @@ public class SideBySide : MonoBehaviour {
 	[Range(0.0f, 0.3f)]
 	public float Disparity = 0.1f;
 
+	private RenderTexture nullRenderTexture = null;
 
 	// Use this for initialization
 	void Start() {
@@ -27,7 +28,7 @@ public class SideBySide : MonoBehaviour {
 		shaderAR.SetFloat("_Disparity", Disparity);
 		shaderAR.SetFloat ("_FOV", FOV);
 
-		Graphics.Blit(src, dst, shaderAR);
+		Graphics.Blit(src, nullRenderTexture, shaderAR);
 	}
 
 //	public void SetFOV(float fov) {
