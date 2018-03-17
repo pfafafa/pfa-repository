@@ -4,7 +4,7 @@
  * This enumeration had to be starting at 0 
  * until Enum.GetNames(typeof(ColorBlindMode)).Length
  */
-public enum ColorBlindMode {
+public enum ColorBlindMode : int {
     NoColorBlind  = 0,
     Protanopia    = 1,
     Protanomaly   = 2,
@@ -33,7 +33,7 @@ public class ColorBlindMatrix {
 	static ColorBlindMatrix() {
 		// Matrices from www.alanzucconi.com
 		
-		rgbMatrix [(int)ColorBlindMode.NoColorBlind] = Matrix4x4.identity;
+		rgbMatrix [(int) ColorBlindMode.NoColorBlind] = Matrix4x4.identity;
 
 		rgbMatrix [(int) ColorBlindMode.Protanopia] = MakeMatrix4x4 (
 			.56667f, .43333f, 0f,
@@ -136,8 +136,8 @@ public class ColorBlindMatrix {
 	// The only getter
 	public static Matrix4x4 GetColorBlindnessMat(ColorBlindMode m, bool correction, float alpha) {
 		if (correction)
-			return Shade(ColorBlindCorrection (rgbMatrix [(int)m]), alpha);
+			return Shade(ColorBlindCorrection (rgbMatrix [(int) m]), alpha);
 		else
-			return Shade(rgbMatrix [(int)m], alpha);
+			return Shade(rgbMatrix [(int) m], alpha);
 	}
 }

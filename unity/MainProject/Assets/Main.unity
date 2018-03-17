@@ -238,6 +238,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aae9ade64f17b624e8f21b126cb6f13e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shaderMaterial: {fileID: 0}
   FOV: 1.6
   Disparity: 0.1
