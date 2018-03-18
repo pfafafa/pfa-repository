@@ -11,6 +11,8 @@ public class ColorBlindCamera : MonoBehaviour {
 
 	void Start () {
 
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
+
 		// set title
 		if (SavedValue.correction)
 			title.text = "Correction : ";
@@ -29,5 +31,6 @@ public class ColorBlindCamera : MonoBehaviour {
 		SavedValue.alpha = slider.value;
 
 		// apply alpha on the camera
+		CameraDaltonism.onAlphaChanged();
 	}
 }

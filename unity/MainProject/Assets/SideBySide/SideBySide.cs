@@ -2,6 +2,7 @@
 // Email: lqian8@jhu.edu
 
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class SideBySide : MonoBehaviour {
@@ -32,6 +33,12 @@ public class SideBySide : MonoBehaviour {
 		shaderAR.SetFloat ("_FOV", FOV);
 
 		Graphics.Blit(src, nullRenderTexture, shaderAR);
+	}
+
+	void Update(){
+		if (Input.GetKey(KeyCode.Escape)){
+			SceneManager.LoadScene ("ColorBlindCamera");
+		}
 	}
 
 //	public void SetFOV(float fov) {
