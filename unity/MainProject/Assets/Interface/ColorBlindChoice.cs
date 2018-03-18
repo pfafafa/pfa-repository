@@ -13,6 +13,7 @@ public class ColorBlindChoice: MonoBehaviour {
 
 	void Start () {
 
+		// fill option with ColorBlindMode
 		string[] colorBlindEnum = System.Enum.GetNames (typeof(ColorBlindMode));
 		List<string> optionList = new List<string>();
 		for (int i = 0; i < colorBlindEnum.Length; i++)
@@ -21,7 +22,10 @@ public class ColorBlindChoice: MonoBehaviour {
 		colorBlindChoices.ClearOptions ();
 		colorBlindChoices.AddOptions (optionList);
 
-		shader.SetMatrix ("_mat", Matrix4x4.identity);
+		// Init interface
+		colorBlindChoices.value = (int) SavedValue.mode;
+		correctionToggle.isOn = SavedValue.correction; // doesn't work so far
+		OnChange ();
 	}
 
 
@@ -36,7 +40,13 @@ public class ColorBlindChoice: MonoBehaviour {
 		return correctionToggle.isOn;
 	}
 
-	public void UpdatePreview() {
-		shader.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(ColorBlindMode(), CorrectionBool(), 1f));
+	/*
+	 * Update the preview on each change and save values
+	 */
+	public void OnChange() {
+		SavedValue.mode = ColorBlindMode ();
+		SavedValue.correction = CorrectionBool ();
+
+		shader.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(SavedValue.mode, SavedValue.correction, 1f));
 	}
 }

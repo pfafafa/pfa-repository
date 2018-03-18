@@ -16,6 +16,7 @@ public class CameraDaltonism: MonoBehaviour {
 
 	private Material material;
 
+
 	private void Start() {
 
 		//Screen.orientation = ScreenOrientation.LandscapeRight;
@@ -58,8 +59,6 @@ public class CameraDaltonism: MonoBehaviour {
 
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
-
 		Graphics.Blit (material.mainTexture, dst, material);
-
 	}
 }
