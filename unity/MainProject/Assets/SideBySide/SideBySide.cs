@@ -17,6 +17,9 @@ public class SideBySide : MonoBehaviour {
 
 	// Use this for initialization
 	void Start() {
+
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
+
 		// Never turn off the screen
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		shaderAR = new Material (Shader.Find ("PFA/SideBySide"));

@@ -7,7 +7,7 @@ PlayerSettings:
   productGUID: 40a4bb92b9e8ab9489d6d9db43c6e02b
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
-  defaultScreenOrientation: 3
+  defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -56,7 +56,7 @@ PlayerSettings:
   displayResolutionDialog: 1
   iosAllowHTTPDownload: 1
   allowedAutorotateToPortrait: 1
-  allowedAutorotateToPortraitUpsideDown: 1
+  allowedAutorotateToPortraitUpsideDown: 0
   allowedAutorotateToLandscapeRight: 1
   allowedAutorotateToLandscapeLeft: 1
   useOSAutorotation: 1

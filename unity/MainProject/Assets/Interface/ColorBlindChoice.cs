@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ColorBlindChoice: MonoBehaviour {
 
@@ -48,5 +49,10 @@ public class ColorBlindChoice: MonoBehaviour {
 		SavedValue.correction = CorrectionBool ();
 
 		shader.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(SavedValue.mode, SavedValue.correction, 1f));
+	}
+
+	public void ChangeSceneTo (string sceneName) {
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
+		SceneManager.LoadScene (sceneName);
 	}
 }
