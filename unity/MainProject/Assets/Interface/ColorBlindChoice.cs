@@ -12,9 +12,17 @@ public class ColorBlindChoice: MonoBehaviour {
 	public Material shader;
 
 
-	void Start () {
+	void Update () {
+		Screen.orientation = ScreenOrientation.Portrait;
+
+		// trigger ToggleGroup
+		correctionToggle.isOn = SavedValue.correction;
 
 		// fill option with ColorBlindMode
+		ColorBlindMode tmp = SavedValue.mode;
+		Debug.Log (SavedValue.correction);
+		Debug.Log (tmp);
+
 		string[] colorBlindEnum = System.Enum.GetNames (typeof(ColorBlindMode));
 		List<string> optionList = new List<string>();
 		for (int i = 0; i < colorBlindEnum.Length; i++)
@@ -22,10 +30,10 @@ public class ColorBlindChoice: MonoBehaviour {
 
 		colorBlindChoices.ClearOptions ();
 		colorBlindChoices.AddOptions (optionList);
+		colorBlindChoices.value = (int) tmp;
 
-		// Init interface
-		colorBlindChoices.value = (int) SavedValue.mode;
-		correctionToggle.isOn = SavedValue.correction; // doesn't work so far
+		Debug.Log (colorBlindChoices.value);
+
 		OnChange ();
 	}
 
@@ -47,9 +55,10 @@ public class ColorBlindChoice: MonoBehaviour {
 	public void OnChange() {
 		SavedValue.mode = ColorBlindMode ();
 		SavedValue.correction = CorrectionBool ();
-
+		// apply filter on the preview
 		shader.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(SavedValue.mode, SavedValue.correction, 1f));
 	}
+
 
 	public void ChangeSceneTo (string sceneName) {
 		Screen.orientation = ScreenOrientation.LandscapeLeft;

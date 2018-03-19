@@ -11,7 +11,7 @@ public class ColorBlindCamera : MonoBehaviour {
 
 	void Start () {
 
-		Screen.orientation = ScreenOrientation.LandscapeLeft;
+		Screen.orientation = ScreenOrientation.Portrait;
 
 		// set title
 		if (SavedValue.correction)
@@ -30,6 +30,6 @@ public class ColorBlindCamera : MonoBehaviour {
 	public void OnSliderChange() {
 		SavedValue.alpha = slider.value;
 		// apply alpha on the camera
-		CameraDaltonism.SetFilter(SavedValue.mode, SavedValue.correction, SavedValue.alpha);
+		// CameraDaltonism.SetFilter(SavedValue.mode, SavedValue.correction, SavedValue.alpha);
 	}
 }
