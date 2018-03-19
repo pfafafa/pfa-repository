@@ -6,7 +6,7 @@ Shader "PFA/SideBySide"
 	Properties{
 		_MainTex("", 2D) = "white" {}
 		[HideInInspector]_FOV("FOV", Range(1, 2)) = 1.6
-		[HideInInspector]_Disparity("Disparity", Range(0, 0.3)) = 0.1
+		[HideInInspector]_Disparity("Disparity", Range(0, 0.5)) = 0.1
 	}
 
 	SubShader{

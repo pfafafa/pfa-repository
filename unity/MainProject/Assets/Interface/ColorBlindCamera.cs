@@ -29,8 +29,7 @@ public class ColorBlindCamera : MonoBehaviour {
 	 */
 	public void OnSliderChange() {
 		SavedValue.alpha = slider.value;
-
 		// apply alpha on the camera
-		CameraDaltonism.onAlphaChanged();
+		CameraDaltonism.SetFilter(SavedValue.mode, SavedValue.correction, SavedValue.alpha);
 	}
 }

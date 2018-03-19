@@ -1,9 +1,9 @@
 ﻿// Inspired by a Long Qian's code
 // Email: lqian8@jhu.edu
 
-using UnityEngine;
 using System.Collections;
-
+using UnityEngine;
+using UnityEngine.UI;
 
 /*
  * Replace the Unity camera view by the camera view of the device
@@ -13,6 +13,7 @@ public class CameraFlow: MonoBehaviour {
 	private WebCamTexture webCameraTexture;
 	private Material camTextureHolder;
 
+	public RawImage rawImage;
 
 	void Start() {
 
@@ -29,12 +30,8 @@ public class CameraFlow: MonoBehaviour {
 			}
 #endif
 		}
-		camTextureHolder = new Material(Shader.Find("Standard"));
-		camTextureHolder.mainTexture = webCameraTexture;
+		rawImage.texture = webCameraTexture;
+		rawImage.material.mainTexture = webCameraTexture;
 		webCameraTexture.Play();
 	}
-
-	void OnRenderImage(RenderTexture src, RenderTexture dst) {
-		Graphics.Blit(camTextureHolder.mainTexture, dst);
-	}
-}
+ }

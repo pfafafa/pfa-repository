@@ -11,32 +11,22 @@ public class CameraDaltonism: MonoBehaviour {
 
 	private WebCamTexture mCamera;
 
-	private  bool correction;
-	private  ColorBlindMode mode;
-	private float alpha;
-
 	static private Material material;
 
-	static private RenderTexture nullRenderTexture = null;
 
 	private void Start() {
 
-		Screen.orientation = ScreenOrientation.LandscapeLeft;
+		Screen.orientation = ScreenOrientation.Portrait;
 
 		WebCamDevice[] devices = WebCamTexture.devices;
 
-		if (devices.Length == 0)
-		{
+		if (devices.Length == 0) {
 			Debug.Log ("No camera detected");
 			return;
 		}
 
-		correction = SavedValue.correction;
-		mode = SavedValue.mode;
-		alpha = SavedValue.alpha;
-
 		material = new Material(Shader.Find("PFA/ChannelMixer"));
-		material.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(mode, correction, alpha));
+		material.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(ColorBlindMode.NoColorBlind, false, 1f));
 
 		// Checks how many and which cameras are available on the device
 		for (int cameraIndex = 0; cameraIndex < devices.Length; cameraIndex++) {
@@ -52,12 +42,10 @@ public class CameraDaltonism: MonoBehaviour {
 			#endif
 		}
 
-		if (mCamera == null)
-		{
+		if (mCamera == null) {
 			Debug.Log ("Unable to find camera");
 			return;
 		}
-
 		material.mainTexture = mCamera;
 		mCamera.Play();
 
@@ -67,9 +55,7 @@ public class CameraDaltonism: MonoBehaviour {
 		Graphics.Blit (material.mainTexture, dst, material);
 	}
 
-	static public void onAlphaChanged(){
-		material.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(SavedValue.mode, SavedValue.correction, SavedValue.alpha));
-		Graphics.Blit (material.mainTexture, nullRenderTexture, material);
-
+	static public void SetFilter(ColorBlindMode mode, bool correction, float alpha){
+		material.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(mode, correction, alpha));
 	}
 }
