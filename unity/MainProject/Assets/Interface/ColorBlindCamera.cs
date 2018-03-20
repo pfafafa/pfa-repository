@@ -10,14 +10,14 @@ public class ColorBlindCamera : MonoBehaviour {
 
 
 	void Start () {
-
 		Screen.orientation = ScreenOrientation.Portrait;
 
 		// set title
-		if (SavedValue.correction)
-			title.text = "Correction : ";
-		else 
-			title.text = "Simulation : ";
+		if (SavedValue.correction) {
+			title.text = "Correction ";
+		} else { 
+			title.text = "Simulation ";
+		}
 		title.text += System.Enum.GetName (typeof(ColorBlindMode), SavedValue.mode);
 
 		// set slider

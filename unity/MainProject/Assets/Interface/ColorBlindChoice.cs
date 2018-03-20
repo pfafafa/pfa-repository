@@ -12,27 +12,25 @@ public class ColorBlindChoice: MonoBehaviour {
 	public Material shader;
 
 
-	void Update () {
+	void Awake () {
 		Screen.orientation = ScreenOrientation.Portrait;
 
-		// trigger ToggleGroup
-		correctionToggle.isOn = SavedValue.correction;
-
 		// fill option with ColorBlindMode
-		ColorBlindMode tmp = SavedValue.mode;
-		Debug.Log (SavedValue.correction);
-		Debug.Log (tmp);
-
 		string[] colorBlindEnum = System.Enum.GetNames (typeof(ColorBlindMode));
 		List<string> optionList = new List<string>();
-		for (int i = 0; i < colorBlindEnum.Length; i++)
+		for (int i = 0; i < colorBlindEnum.Length; i++) {
 			optionList.Add (colorBlindEnum [i]);
-
-		colorBlindChoices.ClearOptions ();
+		}
 		colorBlindChoices.AddOptions (optionList);
-		colorBlindChoices.value = (int) tmp;
+		colorBlindChoices.value = (int) SavedValue.mode;
 
-		Debug.Log (colorBlindChoices.value);
+		/*
+		 * The trigger ToggleGroup
+		 * It appears that if SavedValue.mode != NoColorBlind
+		 * then the toggle is on simulation regarless the value of SavedValue.correction
+		 * That's really frustrating and unexplained
+		 */
+		correctionToggle.isOn = SavedValue.correction;
 
 		OnChange ();
 	}
@@ -55,6 +53,7 @@ public class ColorBlindChoice: MonoBehaviour {
 	public void OnChange() {
 		SavedValue.mode = ColorBlindMode ();
 		SavedValue.correction = CorrectionBool ();
+		
 		// apply filter on the preview
 		shader.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(SavedValue.mode, SavedValue.correction, 1f));
 	}
