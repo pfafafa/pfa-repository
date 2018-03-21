@@ -8,7 +8,7 @@ using UnityEngine.UI;
 /*
  * Replace the Unity camera view by the camera view of the device
  */
-public class CameraTelephone: MonoBehaviour {
+public class CameraAndroid: MonoBehaviour {
 
 	private WebCamTexture webCameraTexture;
 
@@ -42,8 +42,8 @@ public class CameraTelephone: MonoBehaviour {
 		fit.aspectRatio = ratio;
 	}
 
-	void Update(){
+	/*void Update(){
 		ratio = (float)webCameraTexture.width / (float)webCameraTexture.height;
 		fit.aspectRatio = ratio;
-	}
+	}*/
 }

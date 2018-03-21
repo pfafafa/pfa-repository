@@ -17,6 +17,9 @@ public class CameraFlow: MonoBehaviour {
 
 	void Start() {
 
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
+
+
 		// Checks how many and which cameras are available on the device
 		for (int cameraIndex = 0; cameraIndex < WebCamTexture.devices.Length; cameraIndex++) {
 #if UNITY_EDITOR
