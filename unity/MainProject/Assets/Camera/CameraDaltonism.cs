@@ -16,7 +16,7 @@ public class CameraDaltonism: MonoBehaviour {
 
 	private void Start() {
 
-		Screen.orientation = ScreenOrientation.Portrait;
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 
 		WebCamDevice[] devices = WebCamTexture.devices;
 

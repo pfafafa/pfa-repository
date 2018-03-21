@@ -10,7 +10,8 @@ public class ColorBlindCamera : MonoBehaviour {
 
 
 	void Start () {
-		Screen.orientation = ScreenOrientation.Portrait;
+		
+		Screen.orientation = ScreenOrientation.LandscapeLeft;
 
 		// set title
 		if (SavedValue.correction) {
