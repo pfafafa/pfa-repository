@@ -45,6 +45,7 @@ public class CameraAndroidDaltonisme: MonoBehaviour {
 	}
 
 	void Update(){
+		
 		Graphics.Blit (rawImage.material.mainTexture, null as RenderTexture, rawImage.material);
 		ratio = (float)webCameraTexture.width / (float)webCameraTexture.height;
 		fit.aspectRatio = ratio;
