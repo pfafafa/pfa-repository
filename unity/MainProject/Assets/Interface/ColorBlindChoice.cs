@@ -60,7 +60,7 @@ public class ColorBlindChoice: MonoBehaviour {
 
 
 	public void ChangeSceneTo (string sceneName) {
-		Screen.orientation = ScreenOrientation.LandscapeLeft;
+		//Screen.orientation = ScreenOrientation.LandscapeLeft;
 		SceneManager.LoadScene (sceneName);
 	}
 }

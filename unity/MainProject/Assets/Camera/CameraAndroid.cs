@@ -1,7 +1,4 @@
-﻿// Inspired by a Long Qian's code
-// Email: lqian8@jhu.edu
-
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +16,7 @@ public class CameraAndroid: MonoBehaviour {
 
 	void Start() {
 
-		Screen.orientation = ScreenOrientation.LandscapeLeft;
+		//Screen.orientation = ScreenOrientation.LandscapeLeft;
 
 		// Checks how many and which cameras are available on the device
 		for (int cameraIndex = 0; cameraIndex < WebCamTexture.devices.Length; cameraIndex++) {
@@ -34,16 +31,21 @@ public class CameraAndroid: MonoBehaviour {
 			}
 			#endif
 		}
-		rawImage.texture = webCameraTexture;
+		//rawImage.texture = webCameraTexture;
 		rawImage.material.mainTexture = webCameraTexture;
 		webCameraTexture.Play();
 
-		ratio = (float)webCameraTexture.width / (float)webCameraTexture.height;
-		fit.aspectRatio = ratio;
 	}
 
-	/*void Update(){
+	void Update(){
 		ratio = (float)webCameraTexture.width / (float)webCameraTexture.height;
 		fit.aspectRatio = ratio;
-	}*/
+
+		float scaleY = webCameraTexture.videoVerticallyMirrored ? -1f : 1f;
+		rawImage.rectTransform.localScale = new Vector3 (1f, scaleY, 1f);
+
+		int orientation = -webCameraTexture.videoRotationAngle;
+		rawImage.rectTransform.localEulerAngles = new Vector3 (0, 0, orientation);
+	}
+		
 }
