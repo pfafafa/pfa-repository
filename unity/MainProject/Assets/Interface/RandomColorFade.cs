@@ -7,7 +7,13 @@ public class RandomColorFade: MonoBehaviour {
 	public float time;  // time (in second) between to color
 
 	void Start () {
+		SetAndBeginFade ();
+	}
+
+	// public function in order to be call from outise
+	public void SetAndBeginFade() {
 		img.color = RandomColor ();
+		CancelInvoke ();
 		ChangeColor ();
 	}
 

@@ -32,6 +32,6 @@ public class ColorBlindCamera : MonoBehaviour {
 		SavedValue.alpha = slider.value;
 		// apply alpha on the camera
 
-		CameraAndroidDaltonisme.SetFilter(SavedValue.mode, SavedValue.correction, SavedValue.alpha);
+		// CameraAndroidDaltonisme.SetFilter(SavedValue.mode, SavedValue.correction, SavedValue.alpha);
 	}
 }
