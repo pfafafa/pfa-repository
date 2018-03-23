@@ -22,7 +22,7 @@ EditorBuildSettings:
     guid: 8d4daf9033eb14675a43b3e3a871399d
   - enabled: 1
     path: Assets/Interface/IntermediateScene.unity
-    guid: 91e65892896e94225bbe7890c4c54f85
+    guid: b9f425dff929345efaea48b5b8b33bb4
   - enabled: 1
     path: Assets/SideBySide/CameraSidebySide.unity
     guid: a3680dd6e3ac343488f8e0785608fa75

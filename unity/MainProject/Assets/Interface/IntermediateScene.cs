@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntermediatteScene : MonoBehaviour {
+public class IntermediateScene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
