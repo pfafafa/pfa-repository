@@ -53,7 +53,7 @@
   <ItemGroup>
      <Compile Include="Assets\Camera\CameraAndroid.cs" />
      <Compile Include="Assets\Camera\CameraAndroidDaltonisme.cs" />
-     <Compile Include="Assets\Camera\CameraDaltonism.cs" />
+     <Compile Include="Assets\Camera\CameraFlow.cs" />
      <Compile Include="Assets\Daltonism\ColorBlindFilter.cs" />
      <Compile Include="Assets\Daltonism\ColorBlindMatrix.cs" />
      <Compile Include="Assets\Interface\ARChoice.cs" />
@@ -64,6 +64,7 @@
      <Compile Include="Assets\Interface\RandomColorFade.cs" />
      <Compile Include="Assets\Interface\SavedValue.cs" />
      <Compile Include="Assets\SideBySide\SideBySide.cs" />
+     <Compile Include="Assets\SideBySide\ViewManager.cs" />
      <None Include="Assets\SideBySide\ShaderSideBySide.shader" />
      <None Include="Assets\Daltonism\ChannelMixer.shader" />
  <Reference Include="UnityEngine.UIAutomation">

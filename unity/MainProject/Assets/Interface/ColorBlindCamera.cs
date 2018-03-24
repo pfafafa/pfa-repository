@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ColorBlindCamera : MonoBehaviour {
+public class ColorBlindCamera : LoadScene {
 
 	public Text title;
 	public Slider slider;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ARChoice : MonoBehaviour {
+public class ARChoice : LoadScene {
 
 	public Dropdown choices;
 
@@ -13,7 +13,6 @@ public class ARChoice : MonoBehaviour {
 
 	void Start () {
 		Screen.orientation = ScreenOrientation.Portrait;
-
 		OnChoiceChange ();
 	}
 		

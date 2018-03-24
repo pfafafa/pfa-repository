@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ColorBlindChoice: MonoBehaviour {
+public class ColorBlindChoice: LoadScene {
 
 	// Contoller on the GUI
 	public Dropdown colorBlindChoices;

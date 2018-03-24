@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 /*
  * Replace the Unity camera view by the camera of the device
  */
-public class CameraDaltonism: MonoBehaviour {
+public class CameraFlow: MonoBehaviour {
 
 	private WebCamTexture mCamera;
 
@@ -52,7 +52,8 @@ public class CameraDaltonism: MonoBehaviour {
 	}
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
-		Graphics.Blit (material.mainTexture, dst, material);
+		// Graphics.Blit (material.mainTexture, dst, material);
+		Graphics.Blit (material.mainTexture, dst);
 	}
 
 	static public void SetFilter(ColorBlindMode mode, bool correction, float alpha){

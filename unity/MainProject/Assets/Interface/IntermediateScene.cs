@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntermediateScene : MonoBehaviour {
+public class IntermediateScene : LoadScene {
 
-	// Use this for initialization
+
 	void Start () {
 		Screen.orientation = ScreenOrientation.LandscapeLeft;	
 	}
