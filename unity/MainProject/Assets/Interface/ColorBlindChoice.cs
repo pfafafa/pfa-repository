@@ -22,7 +22,7 @@ public class ColorBlindChoice: LoadScene {
 			optionList.Add (colorBlindEnum [i]);
 		}
 		colorBlindChoices.AddOptions (optionList);
-		colorBlindChoices.value = (int) SavedValue.mode;
+		colorBlindChoices.value = (int) SavedValue.colorBlindMode;
 
 		/*
 		 * The trigger ToggleGroup
@@ -51,16 +51,10 @@ public class ColorBlindChoice: LoadScene {
 	 * Update the preview on each change and save values
 	 */
 	public void OnChange() {
-		SavedValue.mode = ColorBlindMode ();
+		SavedValue.colorBlindMode = ColorBlindMode ();
 		SavedValue.correction = CorrectionBool ();
 		
 		// apply filter on the preview
-		shader.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(SavedValue.mode, SavedValue.correction, 1f));
-	}
-
-
-	public void ChangeSceneTo (string sceneName) {
-		//Screen.orientation = ScreenOrientation.LandscapeLeft;
-		SceneManager.LoadScene (sceneName);
+		shader.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(SavedValue.colorBlindMode, SavedValue.correction, 1f));
 	}
 }

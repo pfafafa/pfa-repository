@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntermediateScene : LoadScene {
+public class ARView : MonoBehaviour {
 
 	void Start () {
-		Screen.orientation = ScreenOrientation.LandscapeLeft;	
+		
 	}
 }

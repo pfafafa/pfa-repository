@@ -57,6 +57,7 @@
      <Compile Include="Assets\Daltonism\ColorBlindFilter.cs" />
      <Compile Include="Assets\Daltonism\ColorBlindMatrix.cs" />
      <Compile Include="Assets\Interface\ARChoice.cs" />
+     <Compile Include="Assets\Interface\ARView.cs" />
      <Compile Include="Assets\Interface\ColorBlindCamera.cs" />
      <Compile Include="Assets\Interface\ColorBlindChoice.cs" />
      <Compile Include="Assets\Interface\IntermediateScene.cs" />

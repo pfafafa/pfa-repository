@@ -18,8 +18,6 @@ public class CameraAndroidDaltonisme: MonoBehaviour {
 
 	void Start() {
 
-		//Screen.orientation = ScreenOrientation.LandscapeLeft;
-
 		rawImage.material = new Material(Shader.Find("PFA/ChannelMixer"));
 		rawImage.material.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(ColorBlindMode.NoColorBlind, false, 1f));
 

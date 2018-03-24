@@ -4,13 +4,21 @@
 using UnityEngine;
 
 
+public enum DeficiencieMode : int {
+	Normal     = 0,
+	Myopia     = 1,
+	Presbyopia = 2,
+}
+
+
 public class ViewManager : MonoBehaviour {
 
 	private Material shaderAR;
 
 	private float pixelWidth; // in millimeter
+	private float punctumRemotum;
+	private float punctumProximum;
 
-	// temporary [25cm, 10m]
 	[Range(250, 5000)]
 	public float distance = 250;
 
@@ -31,8 +39,14 @@ public class ViewManager : MonoBehaviour {
 			pixelWidth = 1.0f / dpmm;  // width of a pixel (in mm)
 
 
+		punctumRemotum = 5000;
+		punctumProximum = 250;
+
+
+
 		SetImageDistance (250);
 	}
+
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
 		SetImageDistance (distance);
@@ -40,10 +54,31 @@ public class ViewManager : MonoBehaviour {
 	}
 
 
+	public void SetView(DeficiencieMode mode, float leftDioptre, float rightDioptre) {
+	
+		switch (mode) {
+		case DeficiencieMode.Normal:
+		case DeficiencieMode.Presbyopia:
+			// put the image at an infinit distance
+			SetImageDistance (punctumRemotum);
+			break;
+
+		case DeficiencieMode.Myopia:
+			// compute punctum remotum of each eye
+			float leftPR = (1f / leftDioptre) * 100;
+			float rightPR = (1f / rightDioptre) * 100;
+
+			float distance = (punctumProximum + Mathf.Min (leftPR, rightPR)) / 2f;
+			SetImageDistance (distance);
+			break;
+		}
+	}
+
+
 	/*
 	 * Set image at a D (in mm) distance from the user
 	 */
-	public void SetImageDistance(float D) {
+	private void SetImageDistance(float D) {
 		float D2 = 34f; // distance eye's rotation center - cardboard lens
 		float d2 = 30f; // half the distance between cardboard lens
 

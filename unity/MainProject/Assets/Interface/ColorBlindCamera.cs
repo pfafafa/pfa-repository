@@ -19,7 +19,7 @@ public class ColorBlindCamera : LoadScene {
 		} else { 
 			title.text = "Simulation ";
 		}
-		title.text += System.Enum.GetName (typeof(ColorBlindMode), SavedValue.mode);
+		title.text += System.Enum.GetName (typeof(ColorBlindMode), SavedValue.colorBlindMode);
 
 		// set slider
 		slider.value = SavedValue.alpha;
@@ -32,6 +32,6 @@ public class ColorBlindCamera : LoadScene {
 		SavedValue.alpha = slider.value;
 		// apply alpha on the camera
 
-		CameraAndroidDaltonisme.SetFilter(SavedValue.mode, SavedValue.correction, SavedValue.alpha);
+		CameraAndroidDaltonisme.SetFilter(SavedValue.colorBlindMode, SavedValue.correction, SavedValue.alpha);
 	}
 }
