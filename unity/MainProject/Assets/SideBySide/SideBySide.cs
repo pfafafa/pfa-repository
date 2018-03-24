@@ -40,12 +40,4 @@ public class SideBySide : MonoBehaviour {
 			SceneManager.LoadScene ("ColorBlindCamera");
 		}
 	}
-
-//	public void SetFOV(float fov) {
-//		shaderAR.SetFloat("_FOV", fov);
-//	}
-//
-//	public void SetDisparity(float disparity) {
-//		shaderAR.SetFloat("_Disparity", disparity);
-//	}
 }

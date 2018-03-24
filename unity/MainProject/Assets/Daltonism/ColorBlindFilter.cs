@@ -23,8 +23,4 @@ public class ColorBlindFilter : MonoBehaviour {
 
 		Graphics.Blit (src, dst, material);
 	}
-
-	//	public void SetFilter(ColorBlindMode m, bool correction, float alpha) {
-	//		material.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(m, correction, alpha));	
-	//	}
 }
