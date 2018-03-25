@@ -13,11 +13,11 @@ public enum DeficiencieMode : int {
 
 public class ViewManager : MonoBehaviour {
 
-	private Material shaderAR;
+	static private Material shaderAR;
 
-	private float pixelWidth; // in millimeter
-	private float punctumRemotum;
-	private float punctumProximum;
+	static private float pixelWidth; // in millimeter
+	static private float punctumRemotum;
+	static private float punctumProximum;
 
 	[Range(250, 5000)]
 	public float distance = 250;
@@ -54,7 +54,7 @@ public class ViewManager : MonoBehaviour {
 	}
 
 
-	public void SetView(DeficiencieMode mode, float leftDioptre, float rightDioptre) {
+	static public void SetView(DeficiencieMode mode, float leftDioptre, float rightDioptre) {
 	
 		switch (mode) {
 		case DeficiencieMode.Normal:
@@ -78,7 +78,7 @@ public class ViewManager : MonoBehaviour {
 	/*
 	 * Set image at a D (in mm) distance from the user
 	 */
-	private void SetImageDistance(float D) {
+	static private void SetImageDistance(float D) {
 		float D2 = 34f; // distance eye's rotation center - cardboard lens
 		float d2 = 30f; // half the distance between cardboard lens
 
@@ -91,7 +91,7 @@ public class ViewManager : MonoBehaviour {
 	 * Set disparity parameter on the SideBySide shader
 	 * in order to have a dp pixel parallax
 	 */
-	private void SetParallax(float dp) {
+	static private void SetParallax(float dp) {
 		int dpMax = Screen.width / 4;
 
 		// clamp value in [-dpMax, dpMax]
