@@ -19,8 +19,8 @@ public class ViewManager : MonoBehaviour {
 	static private float punctumRemotum;
 	static private float punctumProximum;
 
-	[Range(250, 5000)]
-	public float distance = 250;
+	// [Range(250, 5000)]
+	// public float distance = 250;
 
 
 	void Start() {
@@ -38,18 +38,15 @@ public class ViewManager : MonoBehaviour {
 		else
 			pixelWidth = 1.0f / dpmm;  // width of a pixel (in mm)
 
-
 		punctumRemotum = 5000;
 		punctumProximum = 250;
 
-
-
-		SetImageDistance (250);
+		SetImageDistance (punctumRemotum);
 	}
 
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
-		SetImageDistance (distance);
+		// SetImageDistance (distance);
 		Graphics.Blit(src, dst, shaderAR);
 	}
 
@@ -60,7 +57,7 @@ public class ViewManager : MonoBehaviour {
 		case DeficiencieMode.Normal:
 		case DeficiencieMode.Presbyopia:
 			// put the image at an infinit distance
-			SetImageDistance (punctumRemotum);
+			SetImageDistance(punctumRemotum);
 			break;
 
 		case DeficiencieMode.Myopia:

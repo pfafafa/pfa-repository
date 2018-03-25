@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ARView : MonoBehaviour {
+public class ARView : LoadScene {
 
 	void Start () {
 		Screen.orientation = ScreenOrientation.LandscapeLeft;
@@ -16,9 +16,8 @@ public class ARView : MonoBehaviour {
 		
 		if (Input.GetKey(KeyCode.Escape)){
 			if (Input.GetKey(KeyCode.Escape)){
-				SceneManager.LoadScene ("ARChoice");
+				ChangeSceneTo ("ARChoice");
 			}
 		}
-
 	}
 }

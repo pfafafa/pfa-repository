@@ -186,7 +186,6 @@ GameObject:
   - component: {fileID: 2121940689}
   - component: {fileID: 2121940688}
   - component: {fileID: 2121940695}
-  - component: {fileID: 2121940693}
   - component: {fileID: 2121940694}
   - component: {fileID: 2121940692}
   m_Layer: 0
@@ -203,7 +202,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2121940687}
   m_Enabled: 1
-  m_ExtensionPropertyValues: []
 --- !u!124 &2121940689
 Behaviour:
   m_ObjectHideFlags: 0
@@ -271,19 +269,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   distance: 250
---- !u!114 &2121940693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2121940687}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 484bd3347e3f941a0aec490042e2acdc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rawImage: {fileID: 0}
-  fit: {fileID: 0}
 --- !u!114 &2121940694
 MonoBehaviour:
   m_ObjectHideFlags: 0
