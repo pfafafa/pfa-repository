@@ -4,6 +4,8 @@ import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 
+import static org.opencv.core.Core.GEMM_2_T;
+
 /**
  * Factory of FrameProc
  *
@@ -69,7 +71,7 @@ class FrameProcFactory {
                 int height = rgbaFloatFrame.height();
 
                 Mat colors = rgbaFloatFrame.reshape(1, width * height);
-                Core.gemm(colors, transform, 1, useless, 0, colors);
+                Core.gemm(colors, transform, 1, useless, 0, colors, GEMM_2_T);
                 rgbaFloatFrame = colors.reshape(4, height);
 
                 return rgbaFloatFrame;
