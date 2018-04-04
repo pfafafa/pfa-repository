@@ -10,7 +10,7 @@ Sources are split between an Android Studio code in the folder **pfa-repository*
 
 #### Android Studio
 
-This code uses [OpenCv](https://opencv.org) library because it's more efficient and convinent than the Camera2 API and for the image processing
+This code uses [OpenCv](https://opencv.org) library because it's more efficient and convinent than the Camera2 API about image processing.
 
 #### Unity
 

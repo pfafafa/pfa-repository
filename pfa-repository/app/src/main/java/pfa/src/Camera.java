@@ -99,6 +99,7 @@ public class Camera implements CameraBridgeViewBase.CvCameraViewListener2 {
         rgba8uFrame = inputFrame.rgba();
         rgba8uFrame.convertTo(rgba32fFrame, CvType.CV_32FC4);
 
+        // convert to 32FC4 frame type
         rgba32fFrame = frameProc.process(rgba32fFrame);
 
         rgba32fFrame.convertTo(rgba8uFrame, CvType.CV_8UC4);

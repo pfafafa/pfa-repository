@@ -48,6 +48,7 @@ class FrameProcFactory {
 
     /**
      * You should passe a allocated matrix because it will be release in the release function
+     * And return a FrameProc that apply the matrix to change frame color
      *
      * @param transformMat 4x4 matrix of CvType.CV_32F1C
      * @return a FrameProc that apply transformMat on each frame

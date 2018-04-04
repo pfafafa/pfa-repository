@@ -18,11 +18,6 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnFr
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*
-        //Hide the TitleBar
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-*/
         setContentView(R.layout.activity_main);
 
         // Camera
@@ -30,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements MenuFragment.OnFr
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
         }
 
+        // create Fragment
         MenuFragment menuFragment = new MenuFragment();
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction()
