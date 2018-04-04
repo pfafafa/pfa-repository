@@ -2,15 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/SideBySide/ViewManager.cs">
     <Files>
-      <File FileName="Assets/Interface/ARView.cs" Line="1" Column="1" />
-      <File FileName="Assets/Interface/ARChoice.cs" Line="1" Column="1" />
-      <File FileName="Assets/Interface/IntermediateScene.cs" Line="1" Column="1" />
-      <File FileName="Assets/SideBySide/ViewManager.cs" Line="80" Column="30" />
-      <File FileName="Assets/Interface/SavedValue.cs" Line="1" Column="1" />
-      <File FileName="Assets/Interface/ColorBlindChoice.cs" Line="1" Column="1" />
-      <File FileName="Assets/Camera/CameraAndroidDaltonisme.cs" Line="1" Column="1" />
-      <File FileName="Assets/SideBySide/SideBySide.cs" Line="1" Column="1" />
-      <File FileName="Assets/Camera/CameraDaltonisme.cs" Line="1" Column="1" />
+      <File FileName="Assets/Interface/SavedValue.cs" Line="4" Column="4" />
+      <File FileName="Assets/SideBySide/SideBySide.cs" Line="39" Column="3" />
+      <File FileName="Assets/SideBySide/ViewManager.cs" Line="69" Column="32" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

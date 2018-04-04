@@ -1,7 +1,10 @@
 ﻿
 /*
  * A static class that save value between scenes
+ * 
+ * This class doesn't inherit from MonoBehaviour so it's not reset at every new scene
  */
+
 public static class SavedValue {
 
 	static public ColorBlindMode colorBlindMode = ColorBlindMode.NoColorBlind;

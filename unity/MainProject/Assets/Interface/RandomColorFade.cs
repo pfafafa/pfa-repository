@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * Easy script that randomly color fade an image
+ */
+
 public class RandomColorFade: MonoBehaviour {
 
 	public Image img;

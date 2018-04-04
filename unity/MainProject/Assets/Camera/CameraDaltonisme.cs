@@ -51,12 +51,12 @@ public class CameraDaltonisme: MonoBehaviour {
 
 	}
 
-	void OnRenderImage(RenderTexture src, RenderTexture dst) {
-		Graphics.Blit (material.mainTexture, dst, material);
-	}
-
-
 	static public void SetFilter(ColorBlindMode mode, bool correction, float alpha){
 		material.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(mode, correction, alpha));
+	}
+
+	// apply shader
+	void OnRenderImage(RenderTexture src, RenderTexture dst) {
+		Graphics.Blit (material.mainTexture, dst, material);
 	}
 }

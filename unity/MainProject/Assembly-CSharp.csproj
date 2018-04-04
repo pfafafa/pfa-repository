@@ -55,8 +55,8 @@
      <Compile Include="Assets\Camera\CameraAndroidDaltonisme.cs" />
      <Compile Include="Assets\Camera\CameraDaltonisme.cs" />
      <Compile Include="Assets\Camera\CameraFlow.cs" />
-     <Compile Include="Assets\Daltonism\ColorBlindFilter.cs" />
-     <Compile Include="Assets\Daltonism\ColorBlindMatrix.cs" />
+     <Compile Include="Assets\Daltonisme\ColorBlindFilter.cs" />
+     <Compile Include="Assets\Daltonisme\ColorBlindMatrix.cs" />
      <Compile Include="Assets\Interface\ARChoice.cs" />
      <Compile Include="Assets\Interface\ARView.cs" />
      <Compile Include="Assets\Interface\ColorBlindCamera.cs" />
@@ -68,7 +68,7 @@
      <Compile Include="Assets\SideBySide\SideBySide.cs" />
      <Compile Include="Assets\SideBySide\ViewManager.cs" />
      <None Include="Assets\SideBySide\ShaderSideBySide.shader" />
-     <None Include="Assets\Daltonism\ChannelMixer.shader" />
+     <None Include="Assets\Daltonisme\ChannelMixer.shader" />
  <Reference Include="UnityEngine.UIAutomation">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UIAutomation/UnityEngine.UIAutomation.dll</HintPath>
  </Reference>

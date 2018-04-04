@@ -10,8 +10,6 @@ public class ColorBlindCamera : LoadScene {
 
 
 	void Start () {
-		
-		//Screen.orientation = ScreenOrientation.Portrait;
 
 		// set title
 		if (SavedValue.correction) {

@@ -55,10 +55,7 @@ public class CameraAndroidDaltonisme: MonoBehaviour {
 		rawImage.rectTransform.localEulerAngles = new Vector3 (0, 0, orientation);
 	}
 
-	/*void OnRenderImage(RenderTexture src, RenderTexture dst) {
-		Graphics.Blit (rawImage.material.mainTexture, null as RenderTexture, rawImage.material);
-	}*/
-
+	// setter
 	static public void SetFilter(ColorBlindMode mode, bool correction, float alpha){
 		staticMaterial.SetMatrix ("_mat", ColorBlindMatrix.GetColorBlindnessMat(mode, correction, alpha));
 	}

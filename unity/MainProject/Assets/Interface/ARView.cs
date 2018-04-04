@@ -11,13 +11,4 @@ public class ARView : LoadScene {
 		CameraDaltonisme.SetFilter(SavedValue.colorBlindMode, SavedValue.correction, SavedValue.alpha);
 		ViewManager.SetView (SavedValue.deficencieMode, SavedValue.leftDioptre, SavedValue.rightDioptre);
 	}
-
-	void Update () {
-		
-		if (Input.GetKey(KeyCode.Escape)){
-			if (Input.GetKey(KeyCode.Escape)){
-				ChangeSceneTo ("ARChoice");
-			}
-		}
-	}
 }

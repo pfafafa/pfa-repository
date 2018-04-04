@@ -3,6 +3,9 @@
 
 using UnityEngine;
 
+/*
+ * Try to correct deficiences
+ */
 
 public enum DeficiencieMode : int {
 	Normal     = 0,
@@ -18,9 +21,6 @@ public class ViewManager : MonoBehaviour {
 	static private float pixelWidth; // in millimeter
 	static private float punctumRemotum;
 	static private float punctumProximum;
-
-	// [Range(250, 5000)]
-	// public float distance = 250;
 
 
 	void Start() {
@@ -46,11 +46,10 @@ public class ViewManager : MonoBehaviour {
 
 
 	void OnRenderImage(RenderTexture src, RenderTexture dst) {
-		// SetImageDistance (distance);
 		Graphics.Blit(src, dst, shaderAR);
 	}
 
-
+	// Set the distance to the screen regarding the mode
 	static public void SetView(DeficiencieMode mode, float leftDioptre, float rightDioptre) {
 	
 		switch (mode) {
@@ -65,6 +64,7 @@ public class ViewManager : MonoBehaviour {
 			float leftPR = (1f / leftDioptre) * 100;
 			float rightPR = (1f / rightDioptre) * 100;
 
+			// average point of both
 			float distance = (punctumProximum + Mathf.Min (leftPR, rightPR)) / 2f;
 			SetImageDistance (distance);
 			break;
@@ -76,7 +76,7 @@ public class ViewManager : MonoBehaviour {
 	 * Set image at a D (in mm) distance from the user
 	 */
 	static private void SetImageDistance(float D) {
-		float D2 = 34f; // distance eye's rotation center - cardboard lens
+		float D2 = 76f; // distance eye's rotation center - screen's phone
 		float d2 = 30f; // half the distance between cardboard lens
 
 		float dx = D2 * d2 / D; // parallax needed on the image (in mm)

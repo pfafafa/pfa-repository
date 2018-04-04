@@ -38,6 +38,8 @@ public class CameraAndroid: MonoBehaviour {
 	}
 
 	void Update(){
+
+		// Adapte at any time ratio of the image on the fit screen
 		ratio = (float)webCameraTexture.width / (float)webCameraTexture.height;
 		fit.aspectRatio = ratio;
 

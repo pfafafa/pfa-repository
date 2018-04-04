@@ -4,6 +4,9 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+ * Test class to test SideBySide shader on the editor
+ */
 
 public class SideBySide : MonoBehaviour {
    
@@ -11,7 +14,7 @@ public class SideBySide : MonoBehaviour {
 
 	[Range(1.0f, 2.0f)]
 	public float FOV = 1.6f;
-	[Range(0.0f, 0.3f)]
+	[Range(-0.5f, 0.5f)]
 	public float Disparity = 0.1f;
 
 	private RenderTexture nullRenderTexture = null;
@@ -33,11 +36,5 @@ public class SideBySide : MonoBehaviour {
 		shaderAR.SetFloat ("_FOV", FOV);
 
 		Graphics.Blit(src, nullRenderTexture, shaderAR);
-	}
-
-	void Update(){
-		if (Input.GetKey(KeyCode.Escape)){
-			SceneManager.LoadScene ("ColorBlindCamera");
-		}
 	}
 }
